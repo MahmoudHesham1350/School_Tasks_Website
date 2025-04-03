@@ -1,0 +1,153 @@
+body {
+    background-color: #FDFBEE;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.sizer {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.welcome {
+    margin-top: 164px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h1 {
+    max-width: 900px;
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+
+.h2 {
+    max-width: 800px;
+    font-size: 24px;
+    font-weight: lighter;
+    line-height: 32.68px;
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.user-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.user-card h1 {
+    font-family: 'Rubik One', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 15px;
+}
+
+.user-card p {
+    font-size: 20px;
+    text-align: center;
+    margin: 0 0 20px;
+}
+
+.user-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #4ECDC4;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #3aa8a2;
+    cursor: pointer;
+}
+
+.way-header {
+    font-family: "Rubik One", sans-serif;
+    font-size: 48px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.way-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+    flex-wrap: wrap;
+}
+
+.quick-links {
+    background-color: white;
+    padding: 40px;
+    margin: 50px auto;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.quick-links .btn {
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.task-table th,
+.task-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.task-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.task-table a {
+    color: #4ECDC4;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.task-table a:hover {
+    text-decoration: underline;
+}
+
+.task-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4ECDC4;
+}
