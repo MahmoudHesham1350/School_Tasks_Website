@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks Listing</title>
+    <title>Task List - School Task Assignment</title>
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/task_list.css">
@@ -15,9 +15,14 @@
             <div class="logo" id="logo">
                 <H1>Classroom of FCAI</H1>
             </div>
-            <div class="rightSec">
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="rightSec" id="rightSec">
                 <a class="links" href="index.html">Home</a>
-                <a class="links">About</a>
+                <a class="links" href="about.html">About</a>
                 <a class="links" href="login.html">Login</a>
             </div>
         </div>
@@ -25,57 +30,33 @@
     
     <div class="page">
         <div class="container">
-            <div class="title">
-                <h1>Tasks List</h1>
-            </div>
-
-            <div class="task_list">
-                <div class="task_card">
-                    <div class="title">
-                        <h3>Lorem ipsum</h3>
+            <div class="task-list">
+                <h1>Task List</h1>
+                <div class="task-cards">
+                    <div class="task-card">
+                        <h2>Task Title 1</h2>
+                        <p class="description">Task description goes here...</p>
+                        <p class="due-date">Due: January 15, 2025</p>
+                        <p class="creator">Created by: Teacher Name</p>
+                        <a href="task_details.html" class="btn">View Details</a>
                     </div>
-                    <div class="card_details">
-                        <div class="description">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione iusto perferendis tenetur mollitia minima veritatis hic explicabo, excepturi ab modi magnam accusantium distinctio asperiores ex nemo provident veniam quam beatae!</p>
-                        </div>
-                        <div class="card_footer">
-                            <div class="due_date">Due: 2023-10-15</div>
-                            <div class="created_by">By: John Doe</div>
-                        </div>
+                    <div class="task-card">
+                        <h2>Task Title 2</h2>
+                        <p class="description">Task description goes here...</p>
+                        <p class="due-date">Due: January 20, 2025</p>
+                        <p class="creator">Created by: Teacher Name</p>
+                        <a href="task_details.html" class="btn">View Details</a>
                     </div>
-                </div>
-
-                <div class="task_card">
-                    <div class="title">
-                        <h3>Lorem ipsum</h3>
-                    </div>
-                    <div class="card_details">
-                        <div class="description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptates et expedita excepturi qui veritatis porro in id ex inventore, iste reiciendis iusto eligendi dolore corporis dignissimos. Deserunt, voluptate ea.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis odit quae doloremque, porro sit nostrum soluta laborum ipsum dolorum tempora dolore officiis esse a incidunt quos. Incidunt provident facilis sunt.
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, neque eum! Ea, atque eligendi quaerat ratione eaque ipsam quisquam. Sit magnam libero accusantium! Numquam dignissimos nam cumque a, eius ut.
-                            </p>
-                        </div>
-                        <div class="card_footer">
-                            <div class="due_date">Due: 2023-10-15</div>
-                            <div class="created_by">By: Jane Smith</div>
-                        </div>
+                    <div class="task-card">
+                        <h2>Task Title 3</h2>
+                        <p class="description">Task description goes here...</p>
+                        <p class="due-date">Due: January 25, 2025</p>
+                        <p class="creator">Created by: Teacher Name</p>
+                        <a href="task_details.html" class="btn">View Details</a>
                     </div>
                 </div>
-
-                <div class="task_card">
-                    <div class="title">
-                        <h3>Lorem ipsum</h3>
-                    </div>
-                    <div class="card_details">
-                        <div class="description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam sit quas ab. Eos quam amet assumenda optio tempore sed nobis quasi at, magni quas velit deserunt excepturi quaerat similique iste.</p>
-                        </div>
-                        <div class="card_footer">
-                            <div class="due_date">Due: 2023-10-15</div>
-                            <div class="created_by">By: Robert Johnson</div>
-                        </div>
-                    </div>
+                <div class="actions">
+                    <a href="create_task.html" class="btn">Create New Task</a>
                 </div>
             </div>
         </div>
@@ -87,5 +68,13 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('rightSec').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

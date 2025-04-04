@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Details - School Task Assignment</title>
+  <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/task_details.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar" id="navbar">
+    <div class="nav sizer">
+      <div class="logo" id="logo">
+        <H1>Classroom of FCAI</H1>
+      </div>
+      <button class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="rightSec" id="rightSec">
+        <a class="links" href="index.html">Home</a>
+        <a class="links" href="about.html">About</a>
+        <a class="links" href="login.html">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="container">
+      <div class="task-card">
+        <div class="task-header">
+          <h1>Task Title</h1>
+          <div class="task-actions">
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Delete</button>
+          </div>
+        </div>
+        
+        <div class="task-info">
+          <div class="info-group">
+            <label>Author:</label>
+            <p>Dr. John Doe</p>
+          </div>
+          
+          <div class="info-group">
+            <label>Description:</label>
+            <p>This is a detailed description of the task. It can contain multiple paragraphs and explain the requirements and expectations for the task.</p>
+          </div>
+          
+          <div class="info-group">
+            <label>Attachments:</label>
+            <div class="attachments">
+              <a href="#" class="attachment-link">
+                <i class="file-icon">📄</i>
+                Task Guidelines.pdf
+              </a>
+              <a href="#" class="attachment-link">
+                <i class="file-icon">🔗</i>
+                Reference Material
+              </a>
+            </div>
+          </div>
+          
+          <div class="info-group">
+            <label>Assigned Date:</label>
+            <p>March 15, 2024</p>
+          </div>
+          
+          <div class="info-group">
+            <label>Due Date:</label>
+            <p>March 30, 2024</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      this.classList.toggle('active');
+      document.getElementById('rightSec').classList.toggle('active');
+    });
+  </script>
+</body>
+</html> 

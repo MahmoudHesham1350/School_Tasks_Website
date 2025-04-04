@@ -1,0 +1,147 @@
+/* task_details.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212; /* True Black */
+  color: #FFFFFF; /* White */
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  flex: 1;
+}
+
+.task-card {
+  background-color: #1E1E2E; /* Dark Navy */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #2D2D3A;
+}
+
+.task-header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #0DCAF0; /* Cyan */
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #0DCAF0; /* Cyan */
+  color: #FFFFFF;
+}
+
+.edit-btn:hover {
+  background-color: #0bbad0;
+}
+
+.delete-btn {
+  background-color: #FF4B4B; /* Red */
+  color: #FFFFFF;
+}
+
+.delete-btn:hover {
+  background-color: #e04545;
+}
+
+.task-info {
+  padding: 20px;
+}
+
+.info-group {
+  margin-bottom: 20px;
+}
+
+.info-group:last-child {
+  margin-bottom: 0;
+}
+
+.info-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #0DCAF0; /* Cyan */
+}
+
+.info-group p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.attachments {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.attachment-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0DCAF0; /* Cyan */
+  text-decoration: none;
+  padding: 8px;
+  background-color: #2D2D3A;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.attachment-link:hover {
+  background-color: #3D3D4A;
+}
+
+.file-icon {
+  font-style: normal;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .container {
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .task-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+} 
