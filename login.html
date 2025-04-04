@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles/navbar.css">
   <link rel="stylesheet" href="styles/footer.css">
   <link rel="stylesheet" href="styles/login.css">
+  <script src="scripts/navbar.js" defer></script> 
 </head>
 <body>
   <!-- Navbar -->
@@ -15,17 +16,23 @@
       <div class="logo" id="logo">
         <H1>Classroom of FCAI</H1>
       </div>
-      <div class="rightSec">
+      <button class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="rightSec" id="rightSec">
         <a class="links" href="index.html">Home</a>
-        <a class="links">About</a>
+        <a class="links" href="about.html">About</a>
         <a class="links" href="signup.html">Sign Up</a>
       </div>
     </div>
   </div>
 
+  <div class="page">
     <div class="container">
       <h1>Login</h1>
-      <form action="#" method="post">
+      <form action="student_dashboard.html" method="post">
         <div class="form-group">
           <label for="username">Username:</label>
           <input type="text" id="username" name="username" required>
@@ -36,6 +43,7 @@
         </div>
         <button type="submit">Login</button>
       </form>
+      <p class="form-footer">Don't have an account? <a href="signup.html">Sign up</a></p>
     </div>
 
     <!-- Footer Section -->
@@ -44,5 +52,9 @@
         <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
       </div>
     </footer>
+  </div>
+
+  
+  </script>
 </body>
 </html>
