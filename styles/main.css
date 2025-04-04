@@ -6,8 +6,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    color: #333;
+    background-color: #ffffff;
+    color: #666666;
 }
 
 .container {
@@ -17,15 +17,15 @@ body {
 }
 
 .header {
-    background-color: #4ecdc4;
-    color: white;
+    background-color: #2c3e50;
+    color: #ffffff;
     padding: 20px;
     text-align: center;
     border-radius: 8px;
 }
 
 .profile-card {
-    background-color: white;
+    background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -40,15 +40,16 @@ body {
 
 .profile-card h2 {
     margin: 10px 0;
+    color: #2c3e50;
 }
 
 .profile-card p {
-    color: #666;
+    color: #666666;
 }
 
 .button {
-    background-color: #4ecdc4;
-    color: white;
+    background-color: #2ecc71;
+    color: #ffffff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -57,5 +58,5 @@ body {
 }
 
 .button:hover {
-    background-color: #3bb2a0;
+    background-color: #27ae60;
 }

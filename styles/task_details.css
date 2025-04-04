@@ -3,8 +3,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #121212; /* True Black */
-  color: #FFFFFF; /* White */
+  background-color: #ffffff;
+  color: #666666;
   font-family: Arial, sans-serif;
   min-height: 100vh;
   display: flex;
@@ -25,7 +25,7 @@ body {
 }
 
 .task-card {
-  background-color: #1E1E2E; /* Dark Navy */
+  background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -36,13 +36,13 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid #2D2D3A;
+  border-bottom: 1px solid #dddddd;
 }
 
 .task-header h1 {
   margin: 0;
   font-size: 24px;
-  color: #0DCAF0; /* Cyan */
+  color: #2c3e50;
 }
 
 .task-actions {
@@ -60,21 +60,21 @@ body {
 }
 
 .edit-btn {
-  background-color: #0DCAF0; /* Cyan */
-  color: #FFFFFF;
+  background-color: #2ecc71;
+  color: #ffffff;
 }
 
 .edit-btn:hover {
-  background-color: #0bbad0;
+  background-color: #27ae60;
 }
 
 .delete-btn {
-  background-color: #FF4B4B; /* Red */
-  color: #FFFFFF;
+  background-color: #e74c3c;
+  color: #ffffff;
 }
 
 .delete-btn:hover {
-  background-color: #e04545;
+  background-color: #c0392b;
 }
 
 .task-info {
@@ -93,7 +93,7 @@ body {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: #0DCAF0; /* Cyan */
+  color: #2c3e50;
 }
 
 .info-group p {
@@ -111,16 +111,16 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #0DCAF0; /* Cyan */
+  color: #3498db;
   text-decoration: none;
   padding: 8px;
-  background-color: #2D2D3A;
+  background-color: #f1f3f5;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .attachment-link:hover {
-  background-color: #3D3D4A;
+  background-color: #e9ecef;
 }
 
 .file-icon {
