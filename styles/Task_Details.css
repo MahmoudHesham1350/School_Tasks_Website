@@ -1,0 +1,94 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.task-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.task-title {
+    color: #007bff;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+.task-details p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+
+.description {
+    color: #555;
+}
+
+
+.attachments {
+    margin-top: 10px;
+}
+
+.attachment {
+    background-color: #f8f9fa;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.attachment a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.attachment a:hover {
+    text-decoration: underline;
+}
+
+
+.buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background-color: #28a745;
+}
+
+.edit-btn:hover {
+    background-color: #218838;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
