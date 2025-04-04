@@ -132,6 +132,41 @@ body {
   background-color: #27ae60;
 }
 
+/* Radio Button Choices Styling */
+.form-group .choices {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.form-group .choice-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.form-group .choice-label:hover {
+    background-color: #f1f3f5;
+    border-color: #3498db;
+}
+
+.form-group .choice-label input[type="radio"] {
+    width: auto;
+    margin: 0;
+}
+
+.form-group .choice-label input[type="radio"]:checked + .choice-label {
+    background-color: #3498db;
+    color: #ffffff;
+    border-color: #3498db;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .container {
