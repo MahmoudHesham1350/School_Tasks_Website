@@ -6,9 +6,8 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
-  color: #333;
-  padding-top: 64px; /* Account for fixed navbar */
+  background-color: #ffffff;
+  color: #666666;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -21,8 +20,8 @@ body {
 }
 
 .header {
-  background-color: #4ecdc4;
-  color: white;
+  background-color: #2c3e50;
+  color: #ffffff;
   padding: 20px;
   text-align: center;
   margin-bottom: 20px;
@@ -48,7 +47,7 @@ body {
 }
 
 .profile {
-  background-color: white;
+  background-color: #f8f9fa;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -65,24 +64,24 @@ body {
 
 .profile-name {
   font-size: 1.5rem;
-  color: #333;
+  color: #2c3e50;
   margin-bottom: 5px;
 }
 
 .profile-bio {
-  color: #666;
+  color: #666666;
   font-size: 1rem;
 }
 
 .dashboard {
-  background-color: white;
+  background-color: #f8f9fa;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard h3 {
-  color: #333;
+  color: #2c3e50;
   margin-bottom: 15px;
   font-size: 1.3rem;
 }
@@ -95,9 +94,9 @@ body {
 
 .activity-item {
   padding: 10px 15px;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   border-radius: 4px;
-  border-left: 4px solid #4ecdc4;
+  border-left: 4px solid #3498db;
 }
 
 .button-container {
@@ -107,8 +106,8 @@ body {
 }
 
 .dashboard-btn {
-  background-color: #4ecdc4;
-  color: white;
+  background-color: #2ecc71;
+  color: #ffffff;
   border: none;
   padding: 12px 24px;
   border-radius: 4px;
@@ -118,5 +117,5 @@ body {
 }
 
 .dashboard-btn:hover {
-  background-color: #3db8b0;
+  background-color: #27ae60;
 }

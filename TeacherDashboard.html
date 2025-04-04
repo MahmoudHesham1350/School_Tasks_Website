@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="styles/profile.css" />
     <link rel="stylesheet" href="styles/header.css" />
     <link rel="stylesheet" href="styles/navbar.css" />
-    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="stylesheet" href="styles/footer.css" />  
+    <script src="scripts/navbar.js" defer></script> 
   </head>
   <body>
     <!-- Navbar -->
@@ -19,10 +20,15 @@
         <div class="logo" id="logo">
           <H1>Classroom of FCAI</H1>
         </div>
-        <div class="rightSec">
+        <button class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="rightSec" id="rightSec">
           <a class="links" href="index.html">Home</a>
-          <a class="links">About</a>
-          <a class="links">Login</a>
+          <a class="links" href="about.html">About</a>
+          <a class="links" href="signup.html">Sign Up</a>
         </div>
       </div>
     </div>
@@ -42,7 +48,7 @@
           <p class="profile-bio">Web Developer Teacher</p>
         </div>
         <div class="button-container">
-          <button class="dashboard-btn">Add Tasks</button>
+          <button class="dashboard-btn" onclick="window.location.href='create_task.html'">Add Tasks</button>
         </div>
       </div>
 
