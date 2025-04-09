@@ -1,19 +1,36 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
     <title>Create a new task</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/create_task.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/footer.css">
 </head>
 <body onload="loadData()">
 
-     <nav>
-     <div class="navbar" id="navbar">
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
         <div class="nav sizer">
           <div class="logo" id="logo">
             <H1>Classroom of FCAI</H1>
-    </nav>
+          </div>
+          <button class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="rightSec" id="rightSec">
+            <a class="links" href="index.html">Home</a>
+            <a class="links" href="about.html">About</a>
+            <a class="links" href="signup.html">Sign Up</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container">
 
     <h2 class="text-center">Create a new task <i class="fas fa-tasks"></i></h2>
 
@@ -51,11 +68,13 @@
 
     <p class="note">Please make sure that the data is correct before submitting the assignment</p>
 
-   <footer>
+</div>
+
+    <!-- Footer Section -->
     <footer class="footer">
-        <div class="footer-content">
-          <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
-        </div>
+      <div class="footer-content">
+        <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
+      </div>
     </footer>
 
     <script>
