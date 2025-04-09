@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <link rel="stylesheet" href="../styles/footer.css" /> 
+    <link rel="stylesheet" href="styles/dashboard.css" />
+    <link rel="stylesheet" href="styles/profile.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/footer.css" />  
+    <script src="scripts/navbar.js" defer></script> 
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+      <div class="nav sizer">
+        <div class="logo" id="logo">
+          <H1>Classroom of FCAI</H1>
+        </div>
+        <button class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="rightSec" id="rightSec">
+          <a class="links" href="index.html">Home</a>
+          <a class="links" href="about.html">About</a>
+          <a class="links" href="signup.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="page">
+      <header class="header">
+        <h1>Teacher Dashboard</h1>
+      </header>
+      <div class="container">
+        <div class="profile">
+          <img
+            src="assets/appstore.png"
+            alt="Profile Picture"
+            class="profile-picture"
+          />
+          <h2 class="profile-name">Zanaty</h2>
+          <p class="profile-bio">Web Developer Teacher</p>
+        </div>
+        <div class="button-container">
+          <button class="dashboard-btn" onclick="window.location.href='create_task.html'">Add Tasks</button>
+        </div>
+      </div>
+
+      <!-- Footer Section -->
+      <footer class="footer">
+        <div class="footer-content">
+          <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+   </body>
+</html>

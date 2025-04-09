@@ -7,8 +7,31 @@
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/dashboard.css" />
     <link rel="stylesheet" href="styles/profile.css" />
-  </head>
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <script src="scripts/navbar.js" defer></script>
+  </head> 
   <body>
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+      <div class="nav sizer">
+        <div class="logo" id="logo">
+          <H1>Classroom of FCAI</H1>
+        </div>
+        <button class="menu-toggle" id="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="rightSec" id="rightSec">
+          <a class="links" href="index.html">Home</a>
+          <a class="links" href="about.html">About</a>
+          <a class="links" href="signup.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
     <div class="page">
       <header class="header">
         <h1>Student Dashboard</h1>
@@ -32,10 +55,13 @@
           </div>
         </div>
       </div>
+
+      <!-- Footer Section -->
       <footer class="footer">
-        <p>&copy; 2023 Profile Dashboard. All rights reserved.</p>
+        <div class="footer-content">
+          <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
+        </div>
       </footer>
     </div>
-    <script src="js/main.js"></script>
-  </body>
+   </body>
 </html>

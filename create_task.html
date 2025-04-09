@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a new task</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body onload="loadData()">
+
+     <nav>
+     <div class="navbar" id="navbar">
+        <div class="nav sizer">
+          <div class="logo" id="logo">
+            <H1>Classroom of FCAI</H1>
+    </nav>
+
+    <h2 class="text-center">Create a new task <i class="fas fa-tasks"></i></h2>
+
+
+    <form id="taskForm" onsubmit="return handleSubmit(event)">
+        <label><i class="fa fa-id-badge"></i> :Task ID</label>
+        <input type="text" id="taskId" required>
+
+        <label><i class="fa fa-heading"></i> :Task title </label>
+        <input type="text" id="title" required>
+
+        <label><i class="fa fa-user"></i>  :Teacher Name</label>
+        <input type="text" id="teacher" required>
+
+        <label><i class="fa fa-flag"></i>: Priority</label>
+        <select id="priority" required>
+            <option value="">Choose</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <label><i class="fa fa-align-left"></i> :description</label>
+        <textarea id="description" rows="4" required></textarea>
+
+        <label><i class="fa fa-calendar-alt"></i> :Due Date</label>
+        <input type="date" id="date" required>
+
+        
+        <div class="form-buttons">
+            <input type="submit" value="Add Task">
+            <input type="reset" value="Wipe data" class="reset-btn" onclick="clearLocalStorage()">
+        </div>
+    </form>
+
+    <p class="note">Please make sure that the data is correct before submitting the assignment</p>
+
+   <footer>
+    <footer class="footer">
+        <div class="footer-content">
+          <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert("Mission sent successfully!");
+            localStorage.clear();
+            document.getElementById("taskForm").reset();
+            return false;
+        }
+
+        const inputs = document.querySelectorAll("input, textarea, select");
+        inputs.forEach(input => {
+            input.addEventListener("input", () => {
+                localStorage.setItem(input.id, input.value);
+            });
+        });
+
+        function loadData() {
+            inputs.forEach(input => {
+                const saved = localStorage.getItem(input.id);
+                if (saved) input.value = saved;
+            });
+        }
+
+        function clearLocalStorage() {
+            localStorage.clear();
+        }
+    </script>
+
+</body>
+</html>
