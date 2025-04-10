@@ -101,10 +101,10 @@ a {
   margin-bottom: 100px;
   flex-wrap: wrap;
   gap: 20px;
+  max-width: min(80%, 1200px); ;
 }
 
 .quick-links {
-  background-color: #f8f9fa;
   padding: 40px;
   margin: 50px auto;
 }
@@ -117,7 +117,7 @@ a {
 }
 
 .quick-links .btn {
-  padding: 15px 25px;
+  padding: 10px 20px;
   font-size: 18px;
   border-radius: 8px;
 }
@@ -233,5 +233,9 @@ a {
   .task-table td {
     padding: 6px;
     font-size: 12px;
+  }
+  .welcome {
+    width: 100%;
+    margin-top: 50px;
   }
 }

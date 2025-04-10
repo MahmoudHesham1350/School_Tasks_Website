@@ -5,8 +5,11 @@
   background-color: #f8f8f8;
   border-radius: 8px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 20px;
+}
+
+.profile > .profile-body {
+  padding: 10px 0 50px 0;
+  width: 100%;
 }
 
 .profile > .profile-header {
@@ -67,7 +70,7 @@
 }
 
 .dashboard-btn {
-  background-color: #4ecdc4;
+  background-color: #4e72cd;
   color: white;
   border: none;
   border-radius: 8px;
