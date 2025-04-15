@@ -50,6 +50,7 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     transition: transform 0.2s, box-shadow 0.2s;
     height: 300px;
+    width: 100%;
 }
 
 .task_list > .task_card:hover {

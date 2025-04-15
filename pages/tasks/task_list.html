@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasks Listing</title>
-    <link rel="stylesheet" href="../../styles/task_list.css">
     <link rel="stylesheet" href="../../styles/components/navbar.css">
     <link rel="stylesheet" href="../../styles/components/footer.css">
     <link rel="stylesheet" href="../../styles/tasks/task_list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="../../scripts/navbar.js" defer></script>     
+    <script src="../../scripts/navbar.js" defer></script>    
 </head>
 <body>
     <!-- Navbar -->
@@ -46,54 +45,8 @@
                 </div>
             </div>
 
-            <div class="task_list">
-                <div class="task_card">
-                    <div class="title">
-                        <h3>Lorem ipsum</h3>
-                    </div>
-                    <div class="card_details">
-                        <div class="description">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione iusto perferendis tenetur mollitia minima veritatis hic explicabo, excepturi ab modi magnam accusantium distinctio asperiores ex nemo provident veniam quam beatae!</p>
-                        </div>
-                        <div class="card_footer">
-                            <div class="due_date">Due: 2023-10-15</div>
-                            <div class="created_by">By: John Doe</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="task_card">
-                    <div class="title">
-                        <h3>Lorem ipsum</h3>
-                    </div>
-                    <div class="card_details">
-                        <div class="description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptates et expedita excepturi qui veritatis porro in id ex inventore, iste reiciendis iusto eligendi dolore corporis dignissimos. Deserunt, voluptate ea.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis odit quae doloremque, porro sit nostrum soluta laborum ipsum dolorum tempora dolore officiis esse a incidunt quos. Incidunt provident facilis sunt.
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi, neque eum! Ea, atque eligendi quaerat ratione eaque ipsam quisquam. Sit magnam libero accusantium! Numquam dignissimos nam cumque a, eius ut.
-                            </p>
-                        </div>
-                        <div class="card_footer">
-                            <div class="due_date">Due: 2023-10-15</div>
-                            <div class="created_by">By: Jane Smith</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="task_card">
-                    <div class="title">
-                        <h3>Lorem ipsum</h3>
-                    </div>
-                    <div class="card_details">
-                        <div class="description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam sit quas ab. Eos quam amet assumenda optio tempore sed nobis quasi at, magni quas velit deserunt excepturi quaerat similique iste.</p>
-                        </div>
-                        <div class="card_footer">
-                            <div class="due_date">Due: 2023-10-15</div>
-                            <div class="created_by">By: Robert Johnson</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="task_list" id="tasks-list">
+                <!-- Task List Content -->
             </div>
         </div>
 
@@ -104,5 +57,8 @@
             </div>
         </footer>
     </div>
+    
+    <script src="../../scripts/fetch.js"></script>
+    <script src="../../scripts/listTasks.js"></script>
 </body>
 </html>
