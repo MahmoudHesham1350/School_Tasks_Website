@@ -1,0 +1,114 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "role": "teacher",
+      "name": "Ms. Taylor",
+      "email": "taylor@example.com",
+      "subject": "Mathematics"
+    },
+    {
+      "id": 2,
+      "role": "student",
+      "name": "Alex Johnson",
+      "email": "alex.johnson@example.com",
+      "grade": "10A"
+    },
+    {
+      "id": 3,
+      "role": "teacher",
+      "name": "Mr. Smith",
+      "email": "smith@example.com",
+      "subject": "Science"
+    },
+    {
+      "id": 4,
+      "role": "student",
+      "name": "Emma Wilson",
+      "email": "emma.w@example.com",
+      "grade": "10B"
+    },
+    {
+      "id": 5,
+      "role": "teacher",
+      "name": "Mrs. Garcia",
+      "email": "garcia@example.com",
+      "subject": "History"
+    },
+    {
+      "id": 6,
+      "role": "student",
+      "name": "James Chen",
+      "email": "james.c@example.com",
+      "grade": "10A"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 101,
+      "title": "Math Homework",
+      "description": "Complete exercises 1 to 10 on page 23 of the Algebra textbook. Ensure all steps are shown for each problem, and double-check your answers using the answer key provided at the back of the book. Submit your work in a neatly organized notebook.",
+      "due_date": "2025-04-18",
+      "assigned_by": 1,
+      "assigned_to": 2,
+      "subject": "Mathematics",
+      "status": "pending",
+      "priority": "high"
+    },
+    {
+      "id": 102,
+      "title": "Science Project",
+      "description": "Build a detailed model of the solar system using materials of your choice (e.g., foam, paper, or 3D printing). Include accurate scaling for planet sizes and distances. Prepare a short presentation explaining the features of each planet and their relative positions.",
+      "due_date": "2025-04-25",
+      "assigned_by": 3,
+      "assigned_to": 4,
+      "subject": "Science",
+      "status": "in progress",
+      "priority": "medium"
+    },
+    {
+      "id": 103,
+      "title": "History Essay",
+      "description": "Write a 1000-word essay on World War II, focusing on the causes, major events, and consequences. Include at least three references from credible sources and ensure proper citation in MLA format. Submit a typed document via email.",
+      "due_date": "2025-04-20",
+      "assigned_by": 5,
+      "assigned_to": 6,
+      "subject": "History",
+      "status": "completed",
+      "priority": "high"
+    },
+    {
+      "id": 104,
+      "title": "Math Quiz Preparation",
+      "description": "Review chapters 5-7 from the Geometry textbook. Focus on understanding theorems and solving practice problems. Create a summary sheet of key formulas and concepts to use during the quiz.",
+      "due_date": "2025-04-22",
+      "assigned_by": 1,
+      "assigned_to": 4,
+      "subject": "Mathematics",
+      "status": "pending",
+      "priority": "medium"
+    },
+    {
+      "id": 105,
+      "title": "Science Lab Report",
+      "description": "Write a detailed lab report based on the chemistry experiment conducted in class. Include sections for introduction, hypothesis, materials, procedure, observations, results, and conclusion. Attach any relevant charts or graphs.",
+      "due_date": "2025-04-28",
+      "assigned_by": 3,
+      "assigned_to": 2,
+      "subject": "Science",
+      "status": "not started",
+      "priority": "low"
+    },
+    {
+      "id": 106,
+      "title": "Historical Timeline",
+      "description": "Create a comprehensive timeline of Ancient Egypt, highlighting key events, rulers, and cultural achievements. Use visuals such as images or drawings to enhance the timeline. Submit a digital or physical copy.",
+      "due_date": "2025-05-01",
+      "assigned_by": 5,
+      "assigned_to": 6,
+      "subject": "History",
+      "status": "in progress",
+      "priority": "medium"
+    }
+  ]
+}
