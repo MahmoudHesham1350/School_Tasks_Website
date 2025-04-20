@@ -1,4 +1,7 @@
+const AUTHOR_ID = new URLSearchParams(window.location.search).get('authorId');
+
 document.addEventListener("DOMContentLoaded", listTasks);
+
 
 function getUserByID(id, users) {
   return users.find(user => user.id === id);
@@ -37,8 +40,11 @@ async function listTasks() {
     const tasks = json.tasks;
     const users = json.users;
     const list = document.getElementById("tasks-list");
+
+    console.log(AUTHOR_ID);
     
     tasks.forEach(task => {
+      if(AUTHOR_ID !== null && task.assigned_by != AUTHOR_ID) return;
       const item = createTaskCard(task, users)
       list.appendChild(item);
     });
