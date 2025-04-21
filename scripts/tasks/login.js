@@ -11,19 +11,27 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('No users found. Please sign up first.');
       return;
     }
-    const users = JSON.parse(usersJSON);
 
+    const users = JSON.parse(usersJSON);
     const user = users.find(u =>
       u.username.toLowerCase() === username.toLowerCase() &&
       u.password === password
     );
 
-    if (user) {
-
-      sessionStorage.setItem('currentUser', JSON.stringify(user));
-      window.location.href = '../dashboard/student_dashboard.html';
-    } else {
+    if (!user) {
       alert('Invalid username or password.');
+      return;
     }
+
+    sessionStorage.setItem('currentUser', JSON.stringify(user));
+
+    let dashFile;
+    switch (user.userType) {
+      case 'admin':   dashFile = 'AdminDashboard.html';   break;
+      case 'teacher': dashFile = 'TeacherDashboard.html'; break;
+      default:        dashFile = 'StudentDashboard.html';
+    }
+
+    window.location.href = `../../pages/dashboard/${dashFile}`;
   });
 });
