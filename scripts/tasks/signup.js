@@ -34,6 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
       default:        dashFile = 'StudentDashboard.html';
     }
     alert('Sign‑up successful! Redirecting you now…');
-    window.location.href = `../../pages/dashboard/${dashFile}`;
+    window.location.href = `/pages/dashboard/${dashFile}`;
   });
 });
