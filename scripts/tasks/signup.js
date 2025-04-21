@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
 
     const username = form.username.value.trim();
-    const email = form.email.value.trim();
+    const email    = form.email.value.trim();
     const password = form.password.value;
-    const confirm = form['confirm-password'].value;
-    const userType = form.user_type.value;
+    const confirm  = form['confirm-password'].value;
+    const userType = form.user_type.value;         
 
     if (password !== confirm) {
       alert('Passwords do not match.');
@@ -18,23 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const usersJSON = localStorage.getItem('users') || '[]';
-    const users = JSON.parse(usersJSON);
-
-    const duplicate = users.find(u =>
-      u.username.toLowerCase() === username.toLowerCase() ||
-      u.email.toLowerCase() === email.toLowerCase()
-    );
-    if (duplicate) {
-      alert('A user with that username or email already exists.');
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    if (users.some(u => u.username === username || u.email === email)) {
+      alert('Username or email already taken.');
       return;
     }
 
     users.push({ username, email, password, userType });
-
     localStorage.setItem('users', JSON.stringify(users));
 
-    alert('Sign‑up successful! Redirecting to your dashboard...');
-    window.location.href = '../dashboard/student_dashboard.html';
+    let dashFile;
+    switch (userType) {
+      case 'admin':   dashFile = 'AdminDashboard.html';   break;
+      case 'teacher': dashFile = 'TeacherDashboard.html'; break;
+      default:        dashFile = 'StudentDashboard.html';
+    }
+    alert('Sign‑up successful! Redirecting you now…');
+    window.location.href = `../dashboard/${dashFile}`;
   });
 });
