@@ -5,42 +5,48 @@
       "role": "teacher",
       "name": "Ms. Taylor",
       "email": "taylor@example.com",
-      "subject": "Mathematics"
+      "subject": "Mathematics",
+      "password": "hashed_password_taylor"
     },
     {
       "id": 2,
       "role": "student",
       "name": "Alex Johnson",
       "email": "alex.johnson@example.com",
-      "grade": "10A"
+      "grade": "10A",
+      "password": "hashed_password_alex"
     },
     {
       "id": 3,
       "role": "teacher",
       "name": "Mr. Smith",
       "email": "smith@example.com",
-      "subject": "Science"
+      "subject": "Science",
+      "password": "hashed_password_smith"
     },
     {
       "id": 4,
       "role": "student",
       "name": "Emma Wilson",
       "email": "emma.w@example.com",
-      "grade": "10B"
+      "grade": "10B",
+      "password": "hashed_password_emma"
     },
     {
       "id": 5,
       "role": "teacher",
       "name": "Mrs. Garcia",
       "email": "garcia@example.com",
-      "subject": "History"
+      "subject": "History",
+      "password": "hashed_password_garcia"
     },
     {
       "id": 6,
       "role": "student",
       "name": "James Chen",
       "email": "james.c@example.com",
-      "grade": "10A"
+      "grade": "10A",
+      "password": "hashed_password_james"
     }
   ],
   "tasks": [

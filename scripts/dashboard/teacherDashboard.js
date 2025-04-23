@@ -1,23 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Fetch the data from the JSON file
-  fetch("../../data.json")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // For demo purposes, we'll use the first teacher (ID: 1)
-      const teacherId = 1; // Ms. Taylor
-      displayTeacherData(data, teacherId);
-      displayTeacherTasks(data, teacherId);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-      document.querySelector(".dashboard").innerHTML =
-        "<p>Failed to load dashboard data. Please try again later.</p>";
-    });
+  // Get current teacher from session storage
+  const currentTeacher = JSON.parse(sessionStorage.getItem('currentUser'));
+  if (!currentTeacher) {
+    window.location.href = '../auth/login.html';
+    return;
+  }
+
+  // Get data from localStorage
+  const usersJSON = localStorage.getItem('users');
+  const tasksJSON = localStorage.getItem('tasks');
+  
+  if (!usersJSON || !tasksJSON) {
+    document.querySelector(".dashboard").innerHTML = "<p>No data available. Please contact administrator.</p>";
+    return;
+  }
+
+  const data = {
+    users: JSON.parse(usersJSON),
+    tasks: JSON.parse(tasksJSON)
+  };
+
+  displayTeacherData(data, currentTeacher.id);
+  displayTeacherTasks(data, currentTeacher.id);
 });
 
 function displayTeacherData(data, teacherId) {

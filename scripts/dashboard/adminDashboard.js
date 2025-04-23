@@ -1,29 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Fetch the data from the JSON file
-  fetch("../../data.json")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // Display admin profile (using first admin for demo purposes)
-      displayAdminData(data);
+  // Get current admin from session storage
+  const currentAdmin = JSON.parse(sessionStorage.getItem('currentUser'));
+  if (!currentAdmin) {
+    window.location.href = '../auth/login.html';
+    return;
+  }
 
-      // Display all tasks in the system
-      displayAllTasks(data);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-      document.querySelector(".task_list").innerHTML =
-        "<p>Failed to load dashboard data. Please try again later.</p>";
-    });
+  // Get data from localStorage
+  const usersJSON = localStorage.getItem('users');
+  const tasksJSON = localStorage.getItem('tasks');
+  
+  if (!usersJSON || !tasksJSON) {
+    document.querySelector(".task_list").innerHTML = "<p>No data available. Please contact administrator.</p>";
+    return;
+  }
+
+  const data = {
+    users: JSON.parse(usersJSON),
+    tasks: JSON.parse(tasksJSON)
+  };
+
+  // Display admin profile
+  displayAdminData(data);
+  // Display all tasks in the system
+  displayAllTasks(data);
 });
 
 function displayAdminData(data) {
-  // For demo purposes, we'll just set admin name
-  document.querySelector(".profile-name").textContent = "Admin User";
+  const currentAdmin = JSON.parse(sessionStorage.getItem('currentUser'));
+  document.querySelector(".profile-name").textContent = currentAdmin.name;
 }
 
 function displayAllTasks(data) {

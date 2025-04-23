@@ -76,33 +76,7 @@
       </div>
     </footer>
 
-    <script>
-        function handleSubmit(e) {
-            e.preventDefault();
-            alert("Mission sent successfully!");
-            localStorage.clear();
-            document.getElementById("taskForm").reset();
-            return false;
-        }
-
-        const inputs = document.querySelectorAll("input, textarea, select");
-        inputs.forEach(input => {
-            input.addEventListener("input", () => {
-                localStorage.setItem(input.id, input.value);
-            });
-        });
-
-        function loadData() {
-            inputs.forEach(input => {
-                const saved = localStorage.getItem(input.id);
-                if (saved) input.value = saved;
-            });
-        }
-
-        function clearLocalStorage() {
-            localStorage.clear();
-        }
-    </script>
+    <script src="../../scripts/tasks/create_task.js"></script>
 
 </body>
 </html>

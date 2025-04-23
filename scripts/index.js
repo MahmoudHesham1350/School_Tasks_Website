@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const userData = JSON.parse(localStorage.getItem("currentUser")); // whole user object
+    const userData = JSON.parse(sessionStorage.getItem("currentUser")); // whole user object
     const allCards = document.querySelectorAll(".user-card");
     const wayHeader = document.querySelector(".way-header");
     const rightSec = document.getElementById("rightSec");
     const quickLinksSection = document.querySelector(".quick-links");
   
-    if (userData && userData.role === "teacher") {
+    if (userData && userData.userType === "teacher") {
         const teacherName = userData.name;
         const rows = document.querySelectorAll(".task-table tbody tr");
 
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         logout.href = "#";
         logout.innerText = "Logout";
         logout.addEventListener("click", () => {
-            localStorage.clear();
+            sessionStorage.clear();
             location.reload();
         });
         rightSec.appendChild(logout);

@@ -1,7 +1,29 @@
 const AUTHOR_ID = new URLSearchParams(window.location.search).get('authorId');
 
-document.addEventListener("DOMContentLoaded", listTasks);
+document.addEventListener('DOMContentLoaded', () => {
+  // Get current user from session storage
+  const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+  if (!currentUser) {
+    window.location.href = '../auth/login.html';
+    return;
+  }
 
+  // Get data from localStorage
+  const usersJSON = localStorage.getItem('users');
+  const tasksJSON = localStorage.getItem('tasks');
+  
+  if (!usersJSON || !tasksJSON) {
+    document.querySelector(".task-list").innerHTML = "<p>No data available. Please contact administrator.</p>";
+    return;
+  }
+
+  const data = {
+    users: JSON.parse(usersJSON),
+    tasks: JSON.parse(tasksJSON)
+  };
+
+  displayTasks(data, currentUser);
+});
 
 function getUserByID(id, users) {
   return users.find(user => user.id === id);
@@ -34,22 +56,16 @@ function createTaskCard(task, users){
     return item;
 }
 
-async function listTasks() {
-  try {
-    const json = JSON.parse(await fetchData("data.json"));
-    const tasks = json.tasks;
-    const users = json.users;
-    const list = document.getElementById("tasks-list");
+function displayTasks(data, currentUser) {
+  const tasks = data.tasks;
+  const users = data.users;
+  const list = document.getElementById("tasks-list");
 
-    console.log(AUTHOR_ID);
-    
-    tasks.forEach(task => {
-      if(AUTHOR_ID !== null && task.assigned_by != AUTHOR_ID) return;
-      const item = createTaskCard(task, users)
-      list.appendChild(item);
-    });
-
-  } catch (error) {
-    console.error("Error loading tasks:", error);
-  }
+  console.log(AUTHOR_ID);
+  
+  tasks.forEach(task => {
+    if(AUTHOR_ID !== null && task.assigned_by != AUTHOR_ID) return;
+    const item = createTaskCard(task, users)
+    list.appendChild(item);
+  });
 }
