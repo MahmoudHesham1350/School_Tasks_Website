@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create a new task</title>
+    <link rel="stylesheet" href="/styles/tasks/taskCreate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/components/navbar.css">
+    <link rel="stylesheet" href="/styles/components/footer.css">
+</head>
+<body onload="loadData()">
+
+    <!-- Navbar -->
+    <div class="navbar" id="navbar">
+        <div class="nav sizer">
+          <div class="logo" id="logo">
+            <H1>Classroom of FCAI</H1>
+          </div>
+          <button class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="rightSec" id="rightSec">
+            <a class="links" href="../../index.html">Home</a>
+            <a class="links" href="../dashboard/StudentDashboard.html">Dashboard</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container">
+
+    <h2 class="text-center">Create a new task <i class="fas fa-tasks"></i></h2>
+
+
+    <form id="taskForm" onsubmit="return handleSubmit(event)">
+      <label><i class="fa fa-heading"></i> :Task title </label>
+      <input type="text" id="title" required>
+
+      <label><i class="fa fa-book"></i> :Subject</label>
+      <input type="text" id="subject" required>
+
+      <label><i class="fa fa-flag"></i>: Priority</label>
+      <select id="priority" required>
+        <option value="">Choose</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+
+      <label><i class="fa fa-tasks"></i>: Status</label>
+      <select id="status" required>
+        <option value="">Choose</option>
+        <option value="Not Started">Not Started</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+
+      <label><i class="fa fa-align-left"></i> :Description</label>
+      <textarea id="description" rows="4" required></textarea>
+
+      <label><i class="fa fa-calendar-alt"></i> :Due Date</label>
+      <input type="date" id="due_date" required>
+
+      <label><i class="fa fa-paperclip"></i> :Attachments</label>
+      <div class="file-input-container">
+        <input type="file" id="attachment" class="file-input" multiple>
+        <label for="attachment" class="file-input-label">Choose Files</label>
+      </div>
+      
+      <div class="form-buttons">
+        <input type="submit" value="Add Task">
+        <input type="reset" value="Wipe data" class="reset-btn" onclick="clearLocalStorage()">
+      </div>
+    </form>
+
+    <p class="note">Please make sure that the data is correct before submitting the assignment</p>
+
+</div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../../scripts/data.js"></script>
+    <script src="../../scripts/tasks/create_task.js"></script>
+
+</body>
+</html>

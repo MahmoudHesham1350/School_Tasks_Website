@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
         const dashboardLink = document.createElement("a");
         dashboardLink.className = "links";
-        dashboardLink.href = `pages/dashboard/${capitalize(role)}Dashboard.html`;
+        dashboardLink.href = `/pages/dashboard/${role}/Dashboard.html`;
         dashboardLink.innerText = "Dashboard";
         rightSec.appendChild(dashboardLink);
     
@@ -55,8 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
         rightSec.appendChild(logout);
     }
     
-    function capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+
 });
   

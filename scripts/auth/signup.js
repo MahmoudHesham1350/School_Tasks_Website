@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const database = new Database();
   const form = document.getElementById('signup-form');
   form.addEventListener('submit', event => {
     event.preventDefault();
@@ -18,22 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    if (users.some(u => u.username === username || u.email === email)) {
+    if (database.getUserByUsername(username)) {
       alert('Username or email already taken.');
       return;
     }
+    database.addUser(new User(username, email, password, userType));
 
-    users.push({ username, email, password, userType });
-    localStorage.setItem('users', JSON.stringify(users));
+    sessionStorage.setItem('currentUser', JSON.stringify(new User(username, email, password, userType)));
 
     let dashFile;
     switch (userType) {
-      case 'admin':   dashFile = 'AdminDashboard.html';   break;
-      case 'teacher': dashFile = 'TeacherDashboard.html'; break;
-      default:        dashFile = 'StudentDashboard.html';
+      case 'admin':   dashFile = 'adminDashboard.html';   break;
+      case 'teacher': dashFile = 'teacherDashboard.html'; break;
+      default:        dashFile = 'studentDashboard.html';
     }
-    alert('Sign‑up successful! Redirecting you now…');
-    window.location.href = `../../pages/dashboard/${dashFile}`;
+    window.location.href = `/pages/dashboard/${dashFile}`;
   });
 });
