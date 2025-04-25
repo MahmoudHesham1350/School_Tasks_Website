@@ -6,10 +6,11 @@
     <title>Teacher Dashboard</title>
     <link rel="stylesheet" href="/styles/dashboard/dashboard.css" />
     <link rel="stylesheet" href="/styles/dashboard/profile.css" />
-    <link rel="stylesheet" href="/styles/header.css" />
+    <link rel="stylesheet" href="/styles/dashboard/main.css" />
     <link rel="stylesheet" href="/styles/components/navbar.css" />
     <link rel="stylesheet" href="/styles/components/footer.css" />
-    <link rel="stylesheet" href="/styles/dashboard/main.css" />
+    <link rel="stylesheet" href="/styles/tasks/taskList.css" />
+    <script src="/scripts/data.js"></script>
     <script src="/scripts/navbar.js" defer></script>
     <script src="/scripts/dashboard/teacherDashboard.js" defer></script>
   </head>
@@ -29,8 +30,8 @@
               alt="Profile Picture"
               class="profile-picture"
             />
-            <h2 class="profile-name">Zanaty</h2>
-            <p class="profile-bio">Web Developer Teacher</p>
+            <h2 class="profile-name">Loading...</h2>
+            <p class="profile-bio">Teacher</p>
             <div class="button-container">
               <button
                 class="dashboard-btn"
@@ -45,6 +46,14 @@
                 View Tasks
               </button>
             </div>
+          </div>
+        </div>
+        
+        <!-- Teacher tasks section -->
+        <div class="dashboard">
+          <h3>Your Created Tasks</h3>
+          <div class="task_list">
+            <div class="loading-message">Loading tasks...</div>
           </div>
         </div>
       </div>

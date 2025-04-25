@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/styles/dashboard/profile.css" />
     <link rel="stylesheet" href="/styles/components/navbar.css" />
     <link rel="stylesheet" href="/styles/components/footer.css" />
+    <link rel="stylesheet" href="/styles/tasks/taskList.css" />
+    <script src="/scripts/data.js"></script>
     <script src="/scripts/navbar.js" defer></script>
     <script src="/scripts/dashboard/studentDashboard.js" defer></script>
   </head>
@@ -28,24 +30,23 @@
               alt="Profile Picture"
               class="profile-picture"
             />
-            <h2 class="profile-name">John Doe</h2>
-            <p class="profile-bio">Web Developer Student</p>
+            <h2 class="profile-name">Loading...</h2>
+            <p class="profile-bio">Student</p>
+            <div class="button-container">
+              <button
+                class="dashboard-btn"
+                onclick="window.location.href='/pages/tasks/taskList.html'"
+              >
+                View All Tasks
+              </button>
+            </div>
           </div>
         </div>
+        
         <div class="dashboard">
-          <h3>Your Activities</h3>
-          <div class="activity-list">
-            <div class="activity-item">Completed Task 1</div>
-            <div class="activity-item">Started Task 2</div>
-            <div class="activity-item">Reviewed Task 3</div>
-          </div>
-          <div class="button-container">
-            <button
-              class="dashboard-btn"
-              onclick="window.location.href='/pages/tasks/taskList.html'"
-            >
-              View Tasks
-            </button>
+          <h3>Your Tasks</h3>
+          <div class="task_list">
+            <div class="loading-message">Loading tasks...</div>
           </div>
         </div>
       </div>
