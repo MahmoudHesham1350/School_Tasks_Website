@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="/styles/dashboard/dashboard.css" />
+    <link rel="stylesheet" href="/styles/dashboard/profile.css" />
+    <link rel="stylesheet" href="/styles/dashboard/main.css" />
+    <link rel="stylesheet" href="/styles/dashboard/dashboardTasks.css" />
+    <link rel="stylesheet" href="/styles/components/navbar.css" />
+    <link rel="stylesheet" href="/styles/components/footer.css" />
+    <script src="/scripts/data.js"></script>
+    <script src="/scripts/navbar.js" defer></script>
+    <script src="/scripts/dashboard/teacherDashboard.js" defer></script>
+  </head>
+  <body>
+    <!-- Navbar will be dynamically inserted here by navbar.js -->
+    <div id="navbar-container"></div>
+
+    <div class="page">
+      <div class="container">
+        <div class="profile">
+          <header class="header">
+            <h1>Teacher Dashboard</h1>
+          </header>
+          <div class="profile-body">
+            <img
+              src="/assets/appstore.png"
+              alt="Profile Picture"
+              class="profile-picture"
+            />
+            <h2 class="profile-name">Loading...</h2>
+            <p class="profile-bio">Teacher</p>
+            <div class="button-container">
+              <button
+                class="dashboard-btn"
+                onclick="window.location.href='/pages/tasks/taskCreate.html'"
+              >
+                Add Tasks</button
+              ><br />
+              <button
+                class="dashboard-btn"
+                onclick="window.location.href='/pages/tasks/taskList.html'"
+              >
+                View Tasks
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Teacher tasks section -->
+        <div class="dashboard">
+          <h3>Your Created Tasks</h3>
+          <div class="task_list">
+            <div class="loading-message">Loading tasks...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Section -->
+      <footer class="footer">
+        <div class="footer-content">
+          <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

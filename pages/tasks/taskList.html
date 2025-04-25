@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link rel="stylesheet" href="/styles/tasks/taskList.css">
+    <link rel="stylesheet" href="/styles/components/navbar.css">
+    <link rel="stylesheet" href="/styles/components/footer.css">
+    <script src="/scripts/data.js"></script>
+    <script src="/scripts/navbar.js" defer></script>
+    <script src="/scripts/tasks/taskList.js" defer></script>
+</head>
+<body>
+    <!-- Navbar will be dynamically inserted here by navbar.js -->
+    <div id="navbar-container"></div>
+    
+    <div class="page">
+        <div class="container">
+            <div class="title">
+                <h1>Tasks List</h1>
+            </div>
+            
+            <!-- Add search section -->
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" placeholder="Search tasks..." class="search-input">
+                    <button class="search-btn">
+                        <i class="fa fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+
+            <div class="task_list" id="tasks-list">
+                <!-- Task List Content -->
+            </div>
+        </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 School Task Assignment. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
