@@ -2,74 +2,99 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get current student from session storage
   const currentStudent = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!currentStudent) {
-    window.location.href = "../auth/login.html";
+    window.location.href = "/pages/auth/login.html";
     return;
   }
 
   // Get data from localStorage
-  const usersJSON = localStorage.getItem("users");
-  const tasksJSON = localStorage.getItem("tasks");
-
-  if (!usersJSON || !tasksJSON) {
+  const database = new Database();
+  
+  if (!database.users || !database.tasks || database.users.length === 0) {
     document.querySelector(".dashboard").innerHTML =
       "<p>No data available. Please contact administrator.</p>";
     return;
   }
 
-  const data = {
-    users: JSON.parse(usersJSON),
-    tasks: JSON.parse(tasksJSON),
-  };
-
-  displayStudentData(data, currentStudent);
-  displayStudentTasks(data, currentStudent.id);
+  displayStudentData(currentStudent);
+  displayStudentTasks(database.tasks, currentStudent.username);
 });
 
-function displayStudentData(data, student) {
-  document.querySelector(".profile-name").textContent = student.username;
-  document.querySelector(".profile-bio").textContent = `Grade ${student.grade}`;
+function displayStudentData(student) {
+  // Update profile information
+  const profileName = document.querySelector(".profile-name");
+  const profileBio = document.querySelector(".profile-bio");
+  
+  if (profileName) profileName.textContent = student.username || "Student";
+  if (profileBio) profileBio.textContent = student.role || "Student";
 }
 
-function displayStudentTasks(data, studentId) {
-  const studentTasks = data.tasks.filter(
-    (task) => task.assigned_to === studentId
-  );
-  const taskList = document.querySelector(".task_list");
-  taskList.innerHTML = "";
+function displayStudentTasks(tasks, studentUsername) {
+  // Find task list container
+  const taskListContainer = document.querySelector(".task_list");
+  
+  // If no container exists, exit the function
+  if (!taskListContainer) return;
+  
+  // Clear existing content
+  taskListContainer.innerHTML = "";
 
-  if (studentTasks.length === 0) {
-    taskList.innerHTML = "<p>No tasks assigned to you yet.</p>";
+  // Filter tasks assigned to the current student
+  const studentTasks = tasks.filter(task => 
+    task.assigned_to === studentUsername || 
+    task.assigned_to === "all" || 
+    !task.assigned_to // Tasks with no specific assignee are shown to all
+  );
+
+  // Check if there are any tasks
+  if (!studentTasks || studentTasks.length === 0) {
+    taskListContainer.innerHTML = `
+      <div class="no-tasks-message">
+        <p>No tasks assigned to you yet. Check back later!</p>
+      </div>
+    `;
     return;
   }
 
+  // Display each task
   studentTasks.forEach((task) => {
-    const teacher = data.users.find((user) => user.id === task.assigned_by);
     const taskCard = document.createElement("div");
     taskCard.className = "task_card";
-    taskCard.classList.add(`status-${task.status.replace(" ", "-")}`);
+    
+    // Add status-based class if status is available
+    if (task.status) {
+      taskCard.classList.add(`status-${task.status.replace(/\s+/g, "-").toLowerCase()}`);
+    }
+
+    // Set priority class if available
+    const priorityClass = task.priority ? task.priority.toLowerCase() : '';
 
     taskCard.innerHTML = `
       <div class="title">
-        <h3>${task.title}</h3>
-        <span class="priority-badge ${task.priority}">${task.priority}</span>
+        <h3>${task.title || "Untitled Task"}</h3>
+        ${task.priority ? `<span class="priority-badge ${priorityClass}">${task.priority}</span>` : ''}
       </div>
       <div class="card_details">
         <div class="description">
-          <p>${task.description}</p>
+          <p>${task.description || "No description provided."}</p>
         </div>
+        ${task.subject ? `
         <div class="task-meta">
           <p><strong>Subject:</strong> ${task.subject}</p>
-          <p><strong>Status:</strong> ${task.status}</p>
+          ${task.status ? `<p><strong>Status:</strong> ${task.status}</p>` : ''}
         </div>
+        ` : ''}
         <div class="card_footer">
-          <div class="due_date">Due: ${task.due_date}</div>
-          <div class="created_by">By: ${
-            teacher ? teacher.name : "Unknown"
-          }</div>
+          <div class="due_date">Due: ${task.due_date || "No deadline"}</div>
+          <div class="created_by">By: ${task.assigned_by || "Unknown"}</div>
         </div>
       </div>
     `;
 
-    taskList.appendChild(taskCard);
+    // Add click handler to view task details
+    taskCard.addEventListener('click', () => {
+      window.location.href = `/pages/tasks/taskDetails.html?taskId=${task.id}`;
+    });
+
+    taskListContainer.appendChild(taskCard);
   });
 }

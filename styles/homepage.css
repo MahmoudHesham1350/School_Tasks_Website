@@ -239,3 +239,141 @@ a {
     margin-top: 50px;
   }
 }
+
+/* Styles for Recent Updates section */
+.recent-updates {
+    margin: 40px 0;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.recent-updates h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.task-table th {
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.task-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.task-table tr:last-child td {
+    border-bottom: none;
+}
+
+.task-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.task-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.task-table a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.task-table a:hover {
+    text-decoration: underline;
+}
+
+/* Loading placeholder */
+.loading-placeholder td {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 30px;
+}
+
+/* No tasks message */
+.task-table .no-tasks-message {
+    background-color: #f8f9fa;
+    text-align: center;
+    color: #6c757d;
+    padding: 30px;
+}
+
+/* Error message */
+.task-table .error-message {
+    background-color: #fff3f3;
+    text-align: center;
+    color: #d32f2f;
+    padding: 30px;
+}
+
+/* Responsive styles for the table */
+@media screen and (max-width: 768px) {
+    .task-table, .task-table thead, .task-table tbody, .task-table th, .task-table td, .task-table tr {
+        display: block;
+    }
+    
+    .task-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    .task-table tr {
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+    }
+    
+    .task-table td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+    
+    .task-table td:before {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        text-align: left;
+    }
+    
+    /* Add labels for mobile view */
+    .task-table td:nth-of-type(1):before { content: "Task Name"; }
+    .task-table td:nth-of-type(2):before { content: "Course"; }
+    .task-table td:nth-of-type(3):before { content: "Due Date"; }
+    .task-table td:nth-of-type(4):before { content: "Assigned By"; }
+    .task-table td:nth-of-type(5):before { content: "Details"; }
+    
+    /* For no tasks and error messages */
+    .task-table .no-tasks-message,
+    .task-table .error-message,
+    .loading-placeholder td {
+        padding-left: 15px;
+        text-align: center;
+    }
+    
+    .task-table .no-tasks-message:before,
+    .task-table .error-message:before,
+    .loading-placeholder td:before {
+        content: none;
+    }
+}

@@ -67,7 +67,7 @@ function displayTaskDetails(task) {
 }
 
 function editTask(taskId) {
-    window.location.href = router.getPage('/task/details') + `?taskId=${taskId}`;
+    window.location.href = "/pages/tasks/taskCreate.html" + `?taskId=${taskId}`;
 }
 
 function deleteTask(taskId) {

@@ -68,6 +68,16 @@ class Database {
         this.tasks = this.tasks.filter(task => task.id !== taskID);
         this.save();
     }
+    
+    updateTask(updatedTask) {
+        const index = this.tasks.findIndex(task => task.id === updatedTask.id);
+        if (index !== -1) {
+            this.tasks[index] = updatedTask;
+            this.save();
+            return true;
+        }
+        return false;
+    }
 
     getUserByUsername(username) {
         const user_data = this.users.find(user => user.username === username);

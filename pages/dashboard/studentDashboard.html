@@ -4,31 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Dashboard</title>
-    <link rel="stylesheet" href="../../styles/dashboard/main.css" />
-    <link rel="stylesheet" href="../../styles/dashboard/dashboard.css" />
-    <link rel="stylesheet" href="../../styles/dashboard/profile.css" />
-    <link rel="stylesheet" href="../../styles/components/navbar.css" />
-    <link rel="stylesheet" href="../../styles/components/footer.css" />
-    <script src="../../scripts/navbar.js" defer></script>
-    <script src="../../scripts/dashboard/studentDashboard.js" defer></script>
+    <link rel="stylesheet" href="/styles/dashboard/main.css" />
+    <link rel="stylesheet" href="/styles/dashboard/dashboard.css" />
+    <link rel="stylesheet" href="/styles/dashboard/profile.css" />
+    <link rel="stylesheet" href="/styles/components/navbar.css" />
+    <link rel="stylesheet" href="/styles/components/footer.css" />
+    <script src="/scripts/navbar.js" defer></script>
+    <script src="/scripts/dashboard/studentDashboard.js" defer></script>
   </head>
   <body>
-    <!-- Navbar -->
-    <div class="navbar" id="navbar">
-      <div class="nav sizer">
-        <div class="logo" id="logo">
-          <h1>Classroom of FCAI</h1>
-        </div>
-        <button class="menu-toggle" id="menu-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div class="rightSec" id="rightSec">
-          <a class="links" href="../../index.html">Home</a>
-        </div>
-      </div>
-    </div>
+    <!-- Navbar will be dynamically inserted here by navbar.js -->
+    <div id="navbar-container"></div>
 
     <div class="page">
       <div class="container">
@@ -38,7 +24,7 @@
           </header>
           <div class="profile-body">
             <img
-              src="../../assets/appstore.png"
+              src="/assets/appstore.png"
               alt="Profile Picture"
               class="profile-picture"
             />
@@ -56,7 +42,7 @@
           <div class="button-container">
             <button
               class="dashboard-btn"
-              onclick="window.location.href='../tasks/taskList.html'"
+              onclick="window.location.href='/pages/tasks/taskList.html'"
             >
               View Tasks
             </button>

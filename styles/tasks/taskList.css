@@ -154,6 +154,34 @@
     }
 }
 
+/* Add styles for the no-tasks-message */
+.no-tasks-message {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    color: #6c757d;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.no-tasks-message p {
+    margin: 0;
+}
+
+.error-message {
+    background-color: #fff3f3;
+    border: 1px solid #ffcdd2;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    color: #d32f2f;
+    font-size: 14px;
+    text-align: center;
+}
+
 
 
 

@@ -1,20 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+One&display=swap');
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to bottom, #f0f4f8, #dbe4ec);
-    animation: fadeIn 1s ease-in;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Rubik+One&display=swap');
 
 * {
     margin: 0;
@@ -76,7 +70,7 @@ textarea {
 
 .form-buttons {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -163,4 +157,42 @@ input[type="submit"]:hover {
     .form-buttons {
         flex-direction: column;
     }
+}
+
+/* Error message styling */
+.error-message {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Success message styling */
+.success-message {
+    color: #4CAF50;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Add style for the current attachments display */
+.current-attachments {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.current-attachments p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.attachment-item {
+    padding: 5px;
+    margin: 5px 0;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #eee;
 }

@@ -40,8 +40,24 @@ function displayTasks(tasks) {
     const list = document.getElementById("tasks-list");
     list.innerHTML = ''; 
     
-    tasks.forEach(task => {
-        if (AUTHOR_NAME !== null && task.assigned_by !== AUTHOR_NAME) return;
+    // Filter tasks if author filter is applied
+    let filteredTasks = tasks;
+    if (AUTHOR_NAME !== null) {
+        filteredTasks = tasks.filter(task => task.assigned_by === AUTHOR_NAME);
+    }
+    
+    // Check if there are any tasks to display
+    if (!tasks || tasks.length === 0 || filteredTasks.length === 0) {
+        const noTasksMessage = document.createElement("div");
+        noTasksMessage.className = "no-tasks-message";
+        noTasksMessage.innerHTML = "<p>No tasks available. Check back later!</p>";
+        list.style.display = "block";
+        list.appendChild(noTasksMessage);
+        return;
+    }
+    
+    // Display available tasks
+    filteredTasks.forEach(task => {
         const item = createTaskCard(task);
         list.appendChild(item);
     });
