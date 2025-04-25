@@ -5,19 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get current user from session storage
   const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   if (!currentUser) {
-    window.location.href = router.getPage('/login');
+    window.location.href = '/pages/login.html';
     return;
   }
 
   if (!TASK_ID) {
-    window.location.href = router.getPage('/404');
+    window.location.href = '/pages/404.html';
     return;
   }
 
   const task = database.getTaskByID(TASK_ID);
 
   if (!task) {
-    window.location.href = router.getPage('/404');
+    window.location.href = '/pages/404.html';
     return;
   }
 
@@ -74,6 +74,6 @@ function deleteTask(taskId) {
     if (confirm('Are you sure you want to delete this task?')) {
         const database = new Database();
         database.deleteTask(taskId);
-        window.location.href = router.getPage('/tasks');
+        window.location.href = "/pages/tasks/taskList.html";
     }
 }

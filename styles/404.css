@@ -1,10 +1,20 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .error-container {
-    min-height: calc(100vh - 104px); /* 100vh - navbar height - footer height */
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .error-content {
@@ -46,4 +56,19 @@
 
 .home-btn:hover {
     background-color: #27ae60;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+    .error-content h1 {
+        font-size: 80px;
+    }
+    
+    .error-content h2 {
+        font-size: 20px;
+    }
+    
+    .error-content {
+        padding: 25px;
+    }
 }
