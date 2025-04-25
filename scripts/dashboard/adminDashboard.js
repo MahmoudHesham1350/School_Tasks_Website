@@ -115,7 +115,7 @@ function displayAllTasks(database) {
         <div class="description">
           <p>${task.description || "No description provided."}</p>
         </div>
-        <div class="admin-task-details">
+        <div class="task-meta">
           ${task.subject ? `<p><strong>Subject:</strong> ${task.subject}</p>` : ''}
           ${task.status ? `<p><strong>Status:</strong> ${task.status}</p>` : ''}
         </div>
