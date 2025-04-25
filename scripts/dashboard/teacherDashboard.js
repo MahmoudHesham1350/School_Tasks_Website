@@ -1,23 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Get current teacher from session storage
-  const currentTeacher = JSON.parse(sessionStorage.getItem('currentUser'));
+  const currentTeacher = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!currentTeacher) {
-    window.location.href = '../auth/login.html';
+    window.location.href = "../auth/login.html";
     return;
   }
 
   // Get data from localStorage
-  const usersJSON = localStorage.getItem('users');
-  const tasksJSON = localStorage.getItem('tasks');
-  
+  const usersJSON = localStorage.getItem("users");
+  const tasksJSON = localStorage.getItem("tasks");
+
   if (!usersJSON || !tasksJSON) {
-    document.querySelector(".dashboard").innerHTML = "<p>No data available. Please contact administrator.</p>";
+    document.querySelector(".dashboard").innerHTML =
+      "<p>No data available. Please contact administrator.</p>";
     return;
   }
 
   const data = {
     users: JSON.parse(usersJSON),
-    tasks: JSON.parse(tasksJSON)
+    tasks: JSON.parse(tasksJSON),
   };
 
   displayTeacherData(data, currentTeacher.id);
@@ -32,7 +33,7 @@ function displayTeacherData(data, teacherId) {
 
   if (teacher) {
     // Update the profile information
-    document.querySelector(".profile-name").textContent = teacher.name;
+    document.querySelector(".profile-name").textContent = teacher.username;
     document.querySelector(
       ".profile-bio"
     ).textContent = `${teacher.subject} Teacher`;

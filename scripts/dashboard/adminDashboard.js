@@ -1,23 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Get current admin from session storage
-  const currentAdmin = JSON.parse(sessionStorage.getItem('currentUser'));
+  const currentAdmin = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!currentAdmin) {
-    window.location.href = '../auth/login.html';
+    window.location.href = "../auth/login.html";
     return;
   }
 
   // Get data from localStorage
-  const usersJSON = localStorage.getItem('users');
-  const tasksJSON = localStorage.getItem('tasks');
-  
+  const usersJSON = localStorage.getItem("users");
+  const tasksJSON = localStorage.getItem("tasks");
+
   if (!usersJSON || !tasksJSON) {
-    document.querySelector(".task_list").innerHTML = "<p>No data available. Please contact administrator.</p>";
+    document.querySelector(".task_list").innerHTML =
+      "<p>No data available. Please contact administrator.</p>";
     return;
   }
 
   const data = {
     users: JSON.parse(usersJSON),
-    tasks: JSON.parse(tasksJSON)
+    tasks: JSON.parse(tasksJSON),
   };
 
   // Display admin profile
@@ -27,8 +28,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function displayAdminData(data) {
-  const currentAdmin = JSON.parse(sessionStorage.getItem('currentUser'));
-  document.querySelector(".profile-name").textContent = currentAdmin.name;
+  const currentAdmin = JSON.parse(sessionStorage.getItem("currentUser"));
+  document.querySelector(".profile-name").textContent = currentAdmin.username;
 }
 
 function displayAllTasks(data) {
