@@ -88,5 +88,5 @@ class Database {
     }
     getUserByEmail(email) {
     return this.users.find(u => u.email.toLowerCase() === email.toLowerCase());
-  }
+    }
 }

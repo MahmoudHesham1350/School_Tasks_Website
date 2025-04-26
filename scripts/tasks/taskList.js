@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
     const database = new Database();
+    
+    // Add event listener for priority filter
+    const priorityFilter = document.getElementById('priority-filter');
+    priorityFilter.addEventListener('change', () => displayTasks(database.tasks));
+    
     displayTasks(database.tasks);
 });
 
@@ -36,29 +41,39 @@ function createTaskCard(task) {
     return item;
 }
 
-function displayTasks(tasks) {
-    const list = document.getElementById("tasks-list");
-    list.innerHTML = ''; 
-    
-    // Filter tasks if author filter is applied
-    let filteredTasks = tasks;
-    if (AUTHOR_NAME !== null) {
-        filteredTasks = tasks.filter(task => task.assigned_by === AUTHOR_NAME);
-    }
-    
-    // Check if there are any tasks to display
-    if (!tasks || tasks.length === 0 || filteredTasks.length === 0) {
-        const noTasksMessage = document.createElement("div");
-        noTasksMessage.className = "no-tasks-message";
-        noTasksMessage.innerHTML = "<p>No tasks available. Check back later!</p>";
-        list.style.display = "block";
-        list.appendChild(noTasksMessage);
+function filterTasksByAuthor(tasks, authorName) {
+    return authorName ? tasks.filter(task => task.assigned_by === authorName) : tasks;
+}
+
+function filterTasksByPriority(tasks, priority) {
+    return priority ? tasks.filter(task => task.priority === priority) : tasks;
+}
+
+function createNoTasksMessage() {
+    const noTasksMessage = document.getElementById("message-container");
+    noTasksMessage.innerHTML = `<div id="no-tasks-message" class="no-tasks-message"><p>No tasks available. Check back later!</p></div>`;
+}
+
+function renderTasksList(list, tasks) {
+    list.innerHTML = '';
+    document.getElementById("message-container").innerHTML = "";
+
+    if (!tasks || tasks.length === 0) {
+        createNoTasksMessage();
         return;
     }
-    
-    // Display available tasks
-    filteredTasks.forEach(task => {
-        const item = createTaskCard(task);
-        list.appendChild(item);
+
+    tasks.forEach(task => {
+        list.appendChild(createTaskCard(task));
     });
+}
+
+function displayTasks(tasks) {
+    const list = document.getElementById("tasks-list");
+    const priorityFilter = document.getElementById('priority-filter').value;
+    
+    let filteredTasks = filterTasksByAuthor(tasks, AUTHOR_NAME);
+    filteredTasks = filterTasksByPriority(filteredTasks, priorityFilter);
+    
+    renderTasksList(list, filteredTasks);
 }
