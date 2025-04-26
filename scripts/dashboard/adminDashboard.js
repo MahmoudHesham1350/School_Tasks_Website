@@ -6,99 +6,57 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // Get data from Database class
+  // Get data from localStorage
   const database = new Database();
   
   if (!database.users || !database.tasks || database.users.length === 0) {
-    document.querySelector(".task_list").innerHTML =
-      "<p class='error-message'>No data available. Please contact system administrator.</p>";
+    document.querySelector(".dashboard").innerHTML =
+      "<p>No data available. Please initialize the system.</p>";
     return;
   }
 
-  // Display admin profile
   displayAdminData(currentAdmin);
-  // Display all tasks in the system
-  displayAllTasks(database);
+  displayAdminTasks(database.tasks, currentAdmin.username);
 });
 
 function displayAdminData(admin) {
+  // Update profile information
   const profileName = document.querySelector(".profile-name");
-  if (profileName) {
-    profileName.textContent = admin.username || "Admin";
-  }
+  const profileBio = document.querySelector(".profile-bio");
+  
+  if (profileName) profileName.textContent = admin.username || "Administrator";
+  if (profileBio) profileBio.textContent = admin.email;
 }
 
-function displayAllTasks(database) {
-  const taskList = document.querySelector(".task_list");
-  if (!taskList) return;
+function displayAdminTasks(tasks, adminUsername) {
+  // Find task list container
+  const taskListContainer = document.querySelector(".task_list");
   
-  taskList.innerHTML = ""; // Clear existing content
+  // If no container exists, exit the function
+  if (!taskListContainer) return;
+  
+  // Clear existing content
+  taskListContainer.innerHTML = "";
 
-  if (!database.tasks || database.tasks.length === 0) {
-    taskList.innerHTML = "<p class='no-tasks-message'>No tasks found in the system.</p>";
+  // Filter tasks created by the current admin
+  const adminTasks = tasks.filter(task => task.assigned_by === adminUsername);
+
+  // Check if there are any tasks
+  if (!adminTasks || adminTasks.length === 0) {
+    taskListContainer.innerHTML = `
+      <div class="no-tasks-message">
+        <p>You haven't created any tasks yet. Click "Create Task" to get started!</p>
+      </div>
+    `;
     return;
   }
 
-  // Create task statistics summary
-  const statsSummary = document.createElement("div");
-  statsSummary.className = "admin-stats";
-
-  const totalTasks = database.tasks.length;
-  const completedTasks = database.tasks.filter(
-    (task) => task.status === "Completed"
-  ).length;
-  const notStartedTasks = database.tasks.filter(
-    (task) => task.status === "Not Started"
-  ).length;
-  const inProgressTasks = database.tasks.filter(
-    (task) => task.status === "In Progress"
-  ).length;
-
-  statsSummary.innerHTML = `
-    <h3>System Overview</h3>
-    <div class="stats-container">
-        <div class="stat-item">
-            <span class="stat-count">${totalTasks}</span>
-            <span class="stat-label">Total Tasks</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-count">${completedTasks}</span>
-            <span class="stat-label">Completed</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-count">${notStartedTasks}</span>
-            <span class="stat-label">Not Started</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-count">${inProgressTasks}</span>
-            <span class="stat-label">In Progress</span>
-        </div>
-    </div>
-  `;
-
-  taskList.appendChild(statsSummary);
-
-  // Create task list header
-  const tasksHeader = document.createElement("h3");
-  tasksHeader.textContent = "All Tasks";
-  tasksHeader.className = "tasks-header";
-  taskList.appendChild(tasksHeader);
-
-  // Create tasks container
-  const tasksContainer = document.createElement("div");
-  tasksContainer.className = "tasks-container";
-  taskList.appendChild(tasksContainer);
-
-  // Sort tasks by due date (most recent first)
-  const sortedTasks = [...database.tasks].sort((a, b) => {
-    return new Date(b.createdAt) - new Date(a.createdAt);
-  });
-
-  sortedTasks.forEach((task) => {
+  // Display each task
+  adminTasks.forEach((task) => {
     const taskCard = document.createElement("div");
     taskCard.className = "task_card";
-
-    // Add status class to the task card
+    
+    // Add status-based class if status is available
     if (task.status) {
       taskCard.classList.add(`status-${task.status.replace(/\s+/g, "-").toLowerCase()}`);
     }
@@ -115,13 +73,17 @@ function displayAllTasks(database) {
         <div class="description">
           <p>${task.description || "No description provided."}</p>
         </div>
+        ${task.subject ? `
         <div class="task-meta">
-          ${task.subject ? `<p><strong>Subject:</strong> ${task.subject}</p>` : ''}
+          <p><strong>Subject:</strong> ${task.subject}</p>
           ${task.status ? `<p><strong>Status:</strong> ${task.status}</p>` : ''}
         </div>
+        ` : ''}
         <div class="card_footer">
           <div class="due_date">Due: ${task.due_date || "No deadline"}</div>
-          <div class="created_by">By: ${task.assigned_by || "Unknown"}</div>
+          <div class="completion_status">
+            Completed by: ${task.completed_by ? task.completed_by.join(", ") : "None"}
+          </div>
         </div>
       </div>
     `;
@@ -131,6 +93,6 @@ function displayAllTasks(database) {
       window.location.href = `/pages/tasks/taskDetails.html?taskId=${task.id}`;
     });
 
-    tasksContainer.appendChild(taskCard);
+    taskListContainer.appendChild(taskCard);
   });
 }

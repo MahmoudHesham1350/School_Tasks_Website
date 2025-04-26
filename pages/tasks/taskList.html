@@ -25,12 +25,19 @@
             <div class="search-section">
                 <div class="search-container">
                     <input type="text" placeholder="Search tasks..." class="search-input">
+                    <select id="priority-filter" class="priority-filter">
+                        <option value="">All Priorities</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
                     <button class="search-btn">
                         <i class="fa fa-search"></i> Search
                     </button>
                 </div>
             </div>
 
+            <div id="message-container"></div>
             <div class="task_list" id="tasks-list">
                 <!-- Task List Content -->
             </div>

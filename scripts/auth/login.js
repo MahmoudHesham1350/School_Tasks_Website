@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     switch (user.role) {
       case 'admin':   dashFile = 'adminDashboard.html';   break;
       case 'teacher': dashFile = 'teacherDashboard.html'; break;
-      default:        dashFile = 'studentDashboard.html';
+      default : throw new Error('Unknown role: ' + user.role);
     }
 
     window.location.href = `/pages/dashboard/${dashFile}`;
