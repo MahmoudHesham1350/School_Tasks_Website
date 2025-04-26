@@ -19,8 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    if (database.getUserByUsername(username)) {
-      alert('Username or email already taken.');
+    const usernameTaken = database.getUserByUsername(username);
+    const emailTaken    = database.getUserByEmail(email);
+
+    if (usernameTaken || emailTaken) {
+      if (usernameTaken && emailTaken) {
+        alert('Both username and email are already taken.');
+      } else if (usernameTaken) {
+        alert('Username is already taken.');
+      } else {
+        alert('Email is already taken.');
+      }
       return;
     }
     database.addUser(new User(username, email, password, userType));
