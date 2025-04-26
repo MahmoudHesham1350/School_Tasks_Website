@@ -36,7 +36,7 @@ function updateUIForUser(userData) {
     // Update welcome message
     const wayHeader = document.querySelector(".way-header");
     if (wayHeader) {
-        wayHeader.innerText = userData ? `Welcome, ${userData.name}!` : 'Who Are You?';
+        wayHeader.innerText = userData ? `Welcome, ${userData.username}!` : 'Who Are You?';
     }
 }
 
