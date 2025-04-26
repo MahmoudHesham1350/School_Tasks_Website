@@ -18,33 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  const userData = JSON.parse(sessionStorage.getItem("currentUser")); // whole user object
+  const userData = JSON.parse(sessionStorage.getItem("currentUser"));
+  if (!userData) return;
 
-  if (userData && userData.userType === "teacher") {
-    const teacherName = userData.name;
-    const rows = document.querySelectorAll(".task-table tbody tr");
-
-    rows.forEach(row=>{
-      const assignedBy = row.cells[3]?.textContent.trim();
-      if (assignedBy != teacherName) {
-        row.style.display = "none";
-      }
-    });
-  }
-
-  if (userData) {
-    const { role, name } = userData;
-
-    const allCards = document.querySelectorAll(".user-card");
-    allCards.forEach(card => {
-      const roleText = card.querySelector("h1").innerText.toLowerCase();
-      if (roleText !== role) card.style.display = "none";
-    });
-
-    const wayHeader = document.querySelector(".way-header");
-    if (wayHeader) {
-      wayHeader.innerText = `Welcome, ${name}!`;
-    }
+  // Update welcome message if it exists
+  const wayHeader = document.querySelector(".way-header");
+  if (wayHeader) {
+    wayHeader.innerText = `Welcome, ${userData.name}!`;
   }
 });
 
@@ -55,7 +35,6 @@ function createNavbar() {
   // Find navbar placeholder or create one if it doesn't exist
   let navbarContainer = document.getElementById('navbar-container');
   if (!navbarContainer) {
-    // If no container exists, look for a first child of body to insert before
     const firstChild = document.body.firstChild;
     navbarContainer = document.createElement('div');
     navbarContainer.id = 'navbar-container';
@@ -65,7 +44,7 @@ function createNavbar() {
   // Get current page path to determine active links
   const currentPath = window.location.pathname;
   
-  // Check if user is logged in
+  // Check if user is logged in and get role
   const isLoggedIn = sessionStorage.getItem('currentUser') !== null;
   let userRole = '';
   
@@ -87,16 +66,13 @@ function createNavbar() {
       <a class="links" href="/index.html">Home</a>
     `;
     
-    // Add dashboard link based on role
+    // Role-specific dashboard links
     if (userRole === 'admin') {
       navLinks += `<a class="links" href="/pages/dashboard/adminDashboard.html">Dashboard</a>`;
     } else if (userRole === 'teacher') {
       navLinks += `<a class="links" href="/pages/dashboard/teacherDashboard.html">Dashboard</a>`;
-    } else {
-      navLinks += `<a class="links" href="/pages/dashboard/studentDashboard.html">Dashboard</a>`;
     }
-    
-    // Add logout link
+    // Logout link for all logged-in users
     navLinks += `<a class="links" href="#" id="logout-link">Logout</a>`;
   } else {
     // Links for non-logged-in users

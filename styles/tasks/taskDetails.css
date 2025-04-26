@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    min-height: 90vh;
     margin: 0;
     max-width: 1000px;
     margin: 30px auto;
@@ -103,4 +103,76 @@ button {
 
 .delete-btn:hover {
     background-color: #c82333;
+}
+
+/* New styles for completion features */
+.task-meta {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 0 0 20px 0;
+}
+
+.priority-badge,
+.status-badge {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.priority-badge.high {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.priority-badge.medium {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.priority-badge.low {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-badge {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.completion-status {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0 0 0;
+}
+
+.completion-status ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+
+.completion-status li {
+    padding: 5px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.complete-btn {
+    background-color: #28a745;
+}
+
+.complete-btn:hover {
+    background-color: #218838;
+}
+
+.complete-btn.completed {
+    background-color: #6c757d;
+}
+
+.complete-btn.completed:hover {
+    background-color: #5a6268;
 }

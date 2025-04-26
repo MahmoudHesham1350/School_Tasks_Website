@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    checkUser();
+    const currentUser = checkAdminAccess();
+    if (!currentUser) return;
+    
+    // Populate teacher list for assignment
+    populateTeacherList();
     
     // Check if we're in edit mode by looking for taskId in URL
     const taskId = new URLSearchParams(window.location.search).get('taskId');
@@ -36,17 +40,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function checkUser() {
+function checkAdminAccess() {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     if (!currentUser) {
         window.location.href = "/pages/auth/login.html";
-        return;
+        return null;
     }
+    
+    if (currentUser.role !== 'admin') {
+        // Hide form and show access denied message
+        document.getElementById('taskForm').style.display = 'none';
+        document.getElementById('admin-only-notice').style.display = 'block';
+        return null;
+    }
+    
+    // Hide admin notice for admins
+    document.getElementById('admin-only-notice').style.display = 'none';
+    return currentUser;
 }
 
-// Add this new function to display error messages with CSS styling
+function populateTeacherList() {
+    const database = new Database();
+    const teachers = database.users.filter(user => user.role === 'teacher');
+    const assignedToSelect = document.getElementById('assigned_to');
+    
+    teachers.forEach(teacher => {
+        const option = document.createElement('option');
+        option.value = teacher.username;
+        option.textContent = teacher.username;
+        assignedToSelect.appendChild(option);
+    });
+}
+
 function showError(message, elementId) {
-    clearErrorMessages(); // Clear any existing error messages first
+    clearErrorMessages();
     
     const element = document.getElementById(elementId);
     const existingError = element.nextElementSibling;
@@ -63,7 +90,6 @@ function showError(message, elementId) {
     element.focus();
 }
 
-// Add this function to clear all error messages
 function clearErrorMessages() {
     const errorMessages = document.querySelectorAll('.error-message');
     errorMessages.forEach(element => element.remove());
@@ -75,7 +101,7 @@ function handleSubmit(event, taskId, currentTask) {
     const database = new Database();
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     
-    if (!currentUser) {
+    if (!currentUser || currentUser.role !== 'admin') {
         window.location.href = "/pages/auth/login.html";
         return;
     }
@@ -84,12 +110,12 @@ function handleSubmit(event, taskId, currentTask) {
     const title = document.getElementById('title').value.trim();
     const subject = document.getElementById('subject').value.trim();
     const priority = document.getElementById('priority').value;
-    const status = document.getElementById('status').value;
     const description = document.getElementById('description').value.trim();
     const due_date = document.getElementById('due_date').value;
+    const assignedTo = Array.from(document.getElementById('assigned_to').selectedOptions).map(option => option.value);
     const attachmentInput = document.getElementById('attachment');
 
-    // Validate each field and show appropriate error messages
+    // Validate each field
     let isValid = true;
     
     if (!title) {
@@ -107,11 +133,6 @@ function handleSubmit(event, taskId, currentTask) {
         isValid = false;
     }
     
-    if (!status) {
-        showError('Please select a status', 'status');
-        isValid = false;
-    }
-    
     if (!description) {
         showError('Description cannot be empty', 'description');
         isValid = false;
@@ -119,6 +140,11 @@ function handleSubmit(event, taskId, currentTask) {
     
     if (!due_date) {
         showError('Due date cannot be empty', 'due_date');
+        isValid = false;
+    }
+    
+    if (assignedTo.length === 0) {
+        showError('Please select at least one teacher or "All Teachers"', 'assigned_to');
         isValid = false;
     }
     
@@ -137,8 +163,10 @@ function handleSubmit(event, taskId, currentTask) {
             task.description = description;
             task.due_date = due_date;
             task.priority = priority;
-            task.status = status;
             task.subject = subject;
+            task.assigned_to = assignedTo.includes('all') ? 'all' : assignedTo;
+            task.status = 'pending'; // Reset status for edited tasks
+            task.completed_by = []; // Reset completion status
             
             // If there are new attachments, add them
             if (attachmentInput.files && attachmentInput.files.length > 0) {
@@ -162,13 +190,16 @@ function handleSubmit(event, taskId, currentTask) {
                 uniqueId,
                 title,
                 description,
-                currentUser.username, // Use current user's username
+                currentUser.username, // assigned_by (admin's username)
                 due_date,
                 priority,
-                status,
+                'pending', // Initial status
                 subject
             );
-            task.createdAt = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+            
+            task.assigned_to = assignedTo.includes('all') ? 'all' : assignedTo;
+            task.completed_by = []; // Initialize empty completion list
+            task.createdAt = new Date().toISOString().split('T')[0];
         
             // Handle file attachments (optional)
             if (attachmentInput.files && attachmentInput.files.length > 0) {
@@ -196,59 +227,30 @@ function handleSubmit(event, taskId, currentTask) {
         
         // Redirect after a short delay
         setTimeout(() => {
-            window.location.href = "/pages/tasks/taskList.html";
+            window.location.href = "/pages/dashboard/adminDashboard.html";
         }, 1500);
+        
     } catch (error) {
-        console.error('Error handling task:', error);
-        showError('Error: ' + (error.message || 'Unknown error occurred'), 'title');
+        showError('An error occurred while saving the task. Please try again.', 'title');
+        console.error('Error saving task:', error);
     }
 }
 
-function clearLocalStorage() {
-    const form = document.getElementById('taskForm');
-    form.reset();
-    
-    // Clear file input separately since reset doesn't always work for files
-    const fileInput = document.getElementById('attachment');
-    fileInput.value = '';
-    
-    // Clear any error messages
-    clearErrorMessages();
-    
-    // Remove current attachments display if it exists
-    const currentAttachments = document.querySelector('.current-attachments');
-    if (currentAttachments) {
-        currentAttachments.remove();
-    }
-}
-
-// Function to fill the form with existing task data
 function fillFormWithTaskData(task) {
-    document.getElementById('title').value = task.title;
-    document.getElementById('subject').value = task.subject;
-    document.getElementById('priority').value = task.priority;
-    document.getElementById('status').value = task.status;
-    document.getElementById('description').value = task.description;
-    document.getElementById('due_date').value = task.due_date;
+    document.getElementById('title').value = task.title || '';
+    document.getElementById('subject').value = task.subject || '';
+    document.getElementById('priority').value = task.priority || '';
+    document.getElementById('description').value = task.description || '';
+    document.getElementById('due_date').value = task.due_date || '';
     
-    // Note: We can't pre-fill file inputs for security reasons
-    // If you want to show the current attachments, you'd need to add a display section
-    if (task.Attachment && task.Attachment.length > 0) {
-        const fileInput = document.getElementById('attachment');
-        const fileContainer = fileInput.parentElement;
-        
-        const attachmentsList = document.createElement('div');
-        attachmentsList.className = 'current-attachments';
-        attachmentsList.innerHTML = '<p>Current attachments:</p>';
-        
-        task.Attachment.forEach(file => {
-            const fileItem = document.createElement('div');
-            fileItem.className = 'attachment-item';
-            fileItem.innerHTML = `📄 ${file.name}`;
-            attachmentsList.appendChild(fileItem);
+    // Handle assigned teachers
+    const assignedToSelect = document.getElementById('assigned_to');
+    if (task.assigned_to === 'all') {
+        assignedToSelect.querySelector('option[value="all"]').selected = true;
+    } else if (Array.isArray(task.assigned_to)) {
+        task.assigned_to.forEach(username => {
+            const option = assignedToSelect.querySelector(`option[value="${username}"]`);
+            if (option) option.selected = true;
         });
-        
-        // Insert the attachments list after the file input container
-        fileContainer.parentNode.insertBefore(attachmentsList, fileContainer.nextSibling);
     }
 }

@@ -1,87 +1,74 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const userData = JSON.parse(sessionStorage.getItem("currentUser")); // whole user object
+    const userData = JSON.parse(sessionStorage.getItem("currentUser"));
 
-    if (userData && userData.userType === "teacher") {
-        const teacherName = userData.name;
-        const rows = document.querySelectorAll(".task-table tbody tr");
-
-        rows.forEach(row=>{
-            const assignedBy = row.cells[3]?.textContent.trim();
-            if (assignedBy != teacherName) {
-                row.style.display = "none";
-            }
-        });
-    }
-
-    if (userData) {
-        const allCards = document.querySelectorAll(".user-card");
-        allCards.forEach(card => {
-            const roleText = card.querySelector("h1").innerText.toLowerCase();
-            if (roleText !== userData.role) card.style.display = "none";
-        });
-
-        const wayHeader = document.querySelector(".way-header");
-        if (wayHeader) {
-            wayHeader.innerText = `Welcome, ${userData.name}!`;
-        }
-    }
+    // Update UI based on authentication status
+    updateUIForUser(userData);
 
     // Load tasks from localStorage
     displayRecentTasks();
 });
 
+function updateUIForUser(userData) {
+    // Handle quick links visibility
+    const quickLinks = document.querySelector('.quick-links');
+    if (quickLinks) {
+        quickLinks.style.display = userData ? 'none' : 'block';
+    }
+
+    // Update user cards visibility
+    const allCards = document.querySelectorAll(".user-card");
+    allCards.forEach(card => {
+        if (userData) {
+            const roleText = card.querySelector("h1").innerText.toLowerCase();
+            card.style.display = roleText === userData.role ? 'block' : 'none';
+        } else {
+            card.style.display = 'block';
+            // Update button text for non-logged in users
+            const btn = card.querySelector('.btn');
+            if (btn) {
+                const role = card.querySelector("h1").innerText.toLowerCase();
+                btn.href = '/pages/auth/login.html';
+                btn.textContent = `Login as ${role}`;
+            }
+        }
+    });
+
+    // Update welcome message
+    const wayHeader = document.querySelector(".way-header");
+    if (wayHeader) {
+        wayHeader.innerText = userData ? `Welcome, ${userData.name}!` : 'Who Are You?';
+    }
+}
+
 function displayRecentTasks() {
     try {
-        // Get tasks from localStorage
         const tasksJson = localStorage.getItem('tasks');
         const taskTableBody = document.querySelector('.task-table tbody');
         
-        // Clear existing hardcoded rows
+        if (!taskTableBody) return;
         taskTableBody.innerHTML = '';
         
-        // If no tasks exist, show a message
-        if (!tasksJson || !taskTableBody) {
-            const noTasksRow = document.createElement('tr');
-            noTasksRow.innerHTML = `
-                <td colspan="5" class="no-tasks-message">
-                    <p>No tasks available yet. Check back later!</p>
-                </td>
-            `;
-            taskTableBody.appendChild(noTasksRow);
+        if (!tasksJson) {
+            showNoTasksMessage(taskTableBody);
             return;
         }
         
-        // Parse tasks
         const tasks = JSON.parse(tasksJson);
-        
-        // Sort tasks by createdAt date (newest first)
         const sortedTasks = tasks.sort((a, b) => {
-            // Use due_date if createdAt is not available
             const dateA = a.createdAt ? new Date(a.createdAt) : new Date(a.due_date);
             const dateB = b.createdAt ? new Date(b.createdAt) : new Date(b.due_date);
             return dateB - dateA;
         });
         
-        // Take only the 5 most recent tasks
         const recentTasks = sortedTasks.slice(0, 5);
         
-        // If no tasks after filtering, show message
         if (recentTasks.length === 0) {
-            const noTasksRow = document.createElement('tr');
-            noTasksRow.innerHTML = `
-                <td colspan="5" class="no-tasks-message">
-                    <p>No tasks available yet. Check back later!</p>
-                </td>
-            `;
-            taskTableBody.appendChild(noTasksRow);
+            showNoTasksMessage(taskTableBody);
             return;
         }
         
-        // Add each task to the table
         recentTasks.forEach(task => {
             const row = document.createElement('tr');
-            
-            // Format the date
             const dueDate = task.due_date ? new Date(task.due_date) : null;
             const formattedDate = dueDate ? 
                 dueDate.toLocaleDateString('en-US', { 
@@ -104,17 +91,28 @@ function displayRecentTasks() {
         });
     } catch (error) {
         console.error('Error displaying recent tasks:', error);
-        
-        // Show error message if something went wrong
-        const taskTableBody = document.querySelector('.task-table tbody');
-        if (taskTableBody) {
-            taskTableBody.innerHTML = `
-                <tr>
-                    <td colspan="5" class="error-message">
-                        <p>Unable to load tasks. Please try again later.</p>
-                    </td>
-                </tr>
-            `;
-        }
+        showErrorMessage(document.querySelector('.task-table tbody'));
     }
+}
+
+function showNoTasksMessage(tableBody) {
+    if (!tableBody) return;
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="5" class="no-tasks-message">
+                <p>No tasks available yet. Check back later!</p>
+            </td>
+        </tr>
+    `;
+}
+
+function showErrorMessage(tableBody) {
+    if (!tableBody) return;
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="5" class="error-message">
+                <p>Unable to load tasks. Please try again later.</p>
+            </td>
+        </tr>
+    `;
 }
