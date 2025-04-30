@@ -24,6 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
       default : throw new Error('Unknown role: ' + user.role);
     }
 
-    window.location.href = `/pages/dashboard/${dashFile}`;
+    window.location.href = `../../pages/dashboard/${dashFile}`;
   });
 });

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get current admin from session storage
   const currentAdmin = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!currentAdmin || currentAdmin.role !== "admin") {
-    window.location.href = "/pages/auth/login.html";
+    window.location.href="../../pages/auth/login.html";
     return;
   }
 

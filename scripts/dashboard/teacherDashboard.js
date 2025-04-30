@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const currentTeacher = JSON.parse(sessionStorage.getItem("currentUser"));
   if (!currentTeacher || currentTeacher.role !== "teacher") {
-    window.location.href = "/pages/auth/login.html";
+    window.location.href="../../pages/auth/login.html";
     return;
   }
 

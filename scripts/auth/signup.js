@@ -43,6 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'teacher': dashFile = 'teacherDashboard.html'; break;
       default:        dashFile = 'studentDashboard.html';
     }
-    window.location.href = `/pages/dashboard/${dashFile}`;
+    window.location.href = `../../pages/dashboard/${dashFile}`;
   });
 });

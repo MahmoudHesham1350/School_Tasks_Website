@@ -63,23 +63,23 @@ function createNavbar() {
   if (isLoggedIn) {
     // Links for logged-in users
     navLinks = `
-      <a class="links" href="/index.html">Home</a>
+      <a class="links" href="../index.html">Home</a>
     `;
     
     // Role-specific dashboard links
     if (userRole === 'admin') {
-      navLinks += `<a class="links" href="/pages/dashboard/adminDashboard.html">Dashboard</a>`;
+      navLinks += `<a class="links" href="../pages/dashboard/adminDashboard.html">Dashboard</a>`;
     } else if (userRole === 'teacher') {
-      navLinks += `<a class="links" href="/pages/dashboard/teacherDashboard.html">Dashboard</a>`;
+      navLinks += `<a class="links" href="../pages/dashboard/teacherDashboard.html">Dashboard</a>`;
     }
     // Logout link for all logged-in users
     navLinks += `<a class="links" href="#" id="logout-link">Logout</a>`;
   } else {
     // Links for non-logged-in users
     navLinks = `
-      <a class="links" href="/pages/auth/signup.html">Sign Up</a>
-      <a class="links" href="/pages/auth/login.html">Login</a>
-      <a class="links" href="/index.html">Home</a>
+      <a class="links" href="../pages/auth/signup.html">Sign Up</a>
+      <a class="links" href="../pages/auth/login.html">Login</a>
+      <a class="links" href="../index.html">Home</a>
     `;
   }
   
@@ -111,7 +111,7 @@ function createNavbar() {
     logoutLink.addEventListener('click', function(e) {
       e.preventDefault();
       sessionStorage.removeItem('currentUser');
-      window.location.href = '/index.html';
+      window.location.href = '../index.html';
     });
   }
 }

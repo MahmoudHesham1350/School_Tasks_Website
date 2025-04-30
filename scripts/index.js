@@ -27,7 +27,7 @@ function updateUIForUser(userData) {
             const btn = card.querySelector('.btn');
             if (btn) {
                 const role = card.querySelector("h1").innerText.toLowerCase();
-                btn.href = '/pages/auth/login.html';
+                btn.href = '../pages/auth/login.html';
                 btn.textContent = `Login as ${role}`;
             }
         }
@@ -82,7 +82,7 @@ function displayRecentTasks() {
                 <td>${task.subject || 'General'}</td>
                 <td>${formattedDate}</td>
                 <td>${task.assigned_by || 'Unknown'}</td>
-                <td><a href="/pages/tasks/taskDetails.html?taskId=${task.id}">View</a></td>
+                <td><a href="../pages/tasks/taskDetails.html?taskId=${task.id}">View</a></td>
             `;
             
             taskTableBody.appendChild(row);

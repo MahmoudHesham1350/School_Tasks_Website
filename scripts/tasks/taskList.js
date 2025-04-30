@@ -3,7 +3,7 @@ const AUTHOR_NAME = new URLSearchParams(window.location.search).get('author');
 document.addEventListener('DOMContentLoaded', () => {
     const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     if (!currentUser) {
-        window.location.href = '/pages/auth/login.html';
+        window.location.href = '../../pages/auth/login.html';
         return;
     }
     const database = new Database();
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function viewTaskDetails(taskID){
-    window.location.href = `/pages/tasks/taskDetails.html?taskId=${taskID}`;
+    window.location.href = `../../pages/tasks/taskDetails.html?taskId=${taskID}`;
 }
 
 function createTaskCard(task) {

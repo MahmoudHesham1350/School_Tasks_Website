@@ -5,19 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get current user from session storage
   const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   if (!currentUser) {
-    window.location.href = '/pages/auth/login.html';
+    window.location.href="../../pages/auth/login.html";
     return;
   }
 
   if (!TASK_ID) {
-    window.location.href = '/pages/404.html';
+    window.location.href="../../pages/404.html";
     return;
   }
 
   const task = database.getTaskByID(TASK_ID);
 
   if (!task) {
-    window.location.href = '/pages/404.html';
+    window.location.href="../../pages/404.html";
     return;
   }
 
@@ -137,14 +137,14 @@ function addButtonEventListeners(task, currentUser) {
 }
 
 function editTask(taskId) {
-  window.location.href = "/pages/tasks/taskCreate.html" + `?taskId=${taskId}`;
+  window.location.href="../../pages/tasks/taskCreate.html" + `?taskId=${taskId}`;
 }
 
 function deleteTask(taskId) {
   if (confirm('Are you sure you want to delete this task?')) {
     const database = new Database();
     database.deleteTask(taskId);
-    window.location.href = "/pages/dashboard/adminDashboard.html";
+    window.location.href="../../pages/dashboard/adminDashboard.html";
   }
 }
 
