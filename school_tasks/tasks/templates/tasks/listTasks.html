@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Task List{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'tasks/css/taskList.css' %}">
+<script src="{% static 'tasks/js/taskList.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="container">
+        <div class="title">
+            <h1>Tasks List</h1>
+        </div>
+            {% if user.role == 'admin' %}
+            <a href="{% url 'create_task' %}" class="create-task-btn">Create New Task</a>
+            {% endif %}
+        
+        <!-- Add search section -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" placeholder="Search tasks..." class="search-input" id="search-input">
+                <select id="priority-filter" class="priority-filter">
+                    <option value="">All Priorities</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <button class="search-btn">
+                    <i class="fa fa-search"></i> Search
+                </button>
+            </div>
+        </div>
+
+        <div id="message-container"></div>
+        <div class="task_list" id="tasks-list">
+            {% if tasks %}
+                {% for task in tasks %}
+                <div class="task_card" data-task-id="{{ task.id }}">
+                    <div class="title">
+                        <h3>{{ task.title }}</h3>
+                    </div>
+                    <div class="card_details">
+                        <div class="description">
+                            <p>{{ task.description }}</p>
+                        </div>
+                        <div class="card_footer">
+                            <div class="due_date">Due: {{ task.due_date }}</div>
+                            <div class="created_by">By: {{ task.creator.username }}</div>
+                            <div class="priority">Priority: {{ task.priority }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-tasks-message">
+                    <p>No tasks available. Check back later!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

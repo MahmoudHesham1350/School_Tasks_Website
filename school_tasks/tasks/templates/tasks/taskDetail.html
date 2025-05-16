@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Task Details - {{ task.title }}{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'tasks/css/taskDetails.css' %}">
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<div class="container">
+    <div class="task-container">
+        <div class="task-header">
+            <h1>{{ task.title }}</h1>
+            {% if user.is_authenticated and user == task.creator %}
+            <div class="task-actions">
+                <a href="{% url 'update_task' task.id %}" class="edit-btn">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <form method="POST" action="{% url 'delete_task' task.id %}" class="delete-form">
+                    {% csrf_token %}
+                    <button class="delete-btn">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="task-info">
+            <p class="description">{{ task.description }}</p>
+
+            <div class="task-metadata">
+                <div class="info-item">
+                    <span class="label">Priority:</span>
+                    <span class="value priority-{{ task.priority|lower }}">{{ task.priority }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Due Date:</span>
+                    <span class="value">{{ task.due_date }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Created By:</span>
+                    <span class="value">{{ task.creator.username }}</span>
+                </div>
+                {% if task.assigned_to.all %}
+                <div class="info-item">
+                    <span class="label">Assigned To:</span>
+                    <div class="value">
+                        {% for teacher in task.assigned_to.all %}
+                        <span class="teacher-tag">{{ teacher.username }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const tasksListUrl = '{% url "tasks" %}';
+</script>
+<script src="{% static 'tasks/js/taskDetail.js' %}"></script>
+{% endblock %}

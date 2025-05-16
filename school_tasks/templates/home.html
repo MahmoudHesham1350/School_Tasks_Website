@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Classroom of FCAI{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'users/css/homepage.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Welcome Section -->
+<div class="welcome sizer">
+    <div class="h1">
+        Manage Tasks Efficiently With Our Platform
+    </div>
+    <div class="h2">
+        <i>Welcome to the Classroom of FCAI !</i>
+    </div>
+</div>      
+
+<!-- User Differentiation Section -->    
+<div class="way-header">Who Are You ?</div>
+<div class="way-cards">
+    <div class="user-card">
+        <img src="{% static 'users/images/admin.png' %}" alt="Admin Icon">
+        <h1>Admin</h1>
+        <p>Manage users, assign tasks, and oversee progress.</p>
+        {% if user.is_authenticated and user.role == 'admin' %}
+            <a href="{% url 'admin_dashboard' %}" class="btn">Admin Dashboard</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn">Login as Admin</a>
+        {% endif %}
+    </div>
+    <div class="user-card">
+        <img src="{% static 'users/images/teacher.png' %}" alt="Teacher Icon">
+        <h1>Teacher</h1>
+        <p>View tasks and submit completed work.</p>
+        {% if user.is_authenticated and user.role == 'teacher' %}
+            <a href="{% url 'teacher_dashboard' %}" class="btn">Teacher Dashboard</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn">Login as Teacher</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Recent Updates Section -->
+{% if user.is_authenticated %}
+<div class="recent-updates">
+    <h2>Recent Updates</h2>
+    <table class="task-table">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Course</th>
+                <th>Due Date</th>
+                <th>Assigned By</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if recent_tasks %}
+                {% for task in recent_tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.subject }}</td>
+                    <td>{{ task.due_date }}</td>
+                    <td>{{ task.creator.username }}</td>
+                    <td><a href="{% url 'task_detail' task.id %}" class="details-link">View Details</a></td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5">No recent tasks available.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>    
+{% endif %}
+
+{% if not user.is_authenticated %}
+<!-- Quick Links Section -->
+<div class="quick-links">
+    <h2>Get Started</h2>
+    <div class="buttons">
+        <a href="{% url 'login' %}" class="btn">Login</a>
+        <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

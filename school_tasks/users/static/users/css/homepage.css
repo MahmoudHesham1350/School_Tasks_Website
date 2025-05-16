@@ -1,0 +1,205 @@
+/* Homepage Styles */
+body {
+    background-color: #ffffff;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.sizer {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Welcome Section */
+.welcome {
+    margin-top: 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.h1 {
+    max-width: 900px;
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.h2 {
+    max-width: 800px;
+    font-size: 24px;
+    font-weight: lighter;
+    line-height: 32.68px;
+    text-align: center;
+    margin-bottom: 70px;
+    color: #666666;
+}
+
+/* User Cards Section */
+.way-header {
+    font-size: 48px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #2c3e50;
+}
+
+.way-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.user-card {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+}
+
+.user-card h1 {
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 15px;
+    color: #2c3e50;
+}
+
+.user-card p {
+    font-size: 18px;
+    text-align: center;
+    margin: 0 0 20px;
+    color: #666666;
+    line-height: 1.5;
+}
+
+.user-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+/* Recent Updates Section */
+.recent-updates {
+    margin: 60px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.recent-updates h2 {
+    font-size: 36px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.task-table th,
+.task-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.task-table th {
+    background-color: #2c3e50;
+    color: #fff;
+    font-weight: 500;
+}
+
+.task-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.details-link {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.details-link:hover {
+    text-decoration: underline;
+}
+
+/* Quick Links Section */
+.quick-links {
+    margin: 60px auto;
+    text-align: center;
+}
+
+.quick-links h2 {
+    font-size: 36px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .h1 {
+        font-size: 40px;
+    }
+
+    .h2 {
+        font-size: 20px;
+    }
+
+    .way-header {
+        font-size: 36px;
+    }
+
+    .task-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}

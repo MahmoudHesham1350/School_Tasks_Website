@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Teacher Dashboard{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'dashboards/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboards/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboards/css/main.css' %}">
+    <script src="{% static 'dashboards/js/teacherDashboard.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="container">
+        <div class="profile">
+            <header class="header">
+                <h1>Teacher Dashboard</h1>
+            </header>
+            <div class="profile-body">
+                <img src="{% static 'images/default-profile.png' %}" alt="Profile Picture" class="profile-picture">
+                <h2 class="profile-name">{{ user.get_full_name }}</h2>
+                <p class="profile-bio">Teacher</p>
+                <div class="button-container">
+                    <a href="{% url 'tasks' %}" class="dashboard-btn">View All Tasks</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks Section -->
+        <div class="dashboard">
+            <h3>Assigned Tasks</h3>
+            <div class="task_list">
+                {% if assigned_tasks %}
+                    {% for task in assigned_tasks %}
+                    <div class="task-card">
+                        <h4>{{ task.title }}</h4>
+                        <p>{{ task.description|truncatewords:30 }}</p>
+                        <div class="task-meta">
+                            <span>Due: {{ task.due_date|date:"M d, Y" }}</span>
+                            <span>Status: {{ task.status }}</span>
+                        </div>
+                        <a href="{% url 'task-detail' task.id %}" class="view-task-btn">View Details</a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No tasks assigned yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Submissions Section -->
+        <div class="dashboard">
+            <h3>Recent Submissions</h3>
+            <div class="submissions_list">
+                {% if recent_submissions %}
+                    {% for submission in recent_submissions %}
+                    <div class="submission-card">
+                        <h4>{{ submission.task.title }}</h4>
+                        <div class="submission-meta">
+                            <span>Submitted by: {{ submission.student.get_full_name }}</span>
+                            <span>Date: {{ submission.submitted_at|date:"M d, Y" }}</span>
+                            <span>Status: {{ submission.status }}</span>
+                        </div>
+                        <a href="{% url 'submission-detail' submission.id %}" class="view-submission-btn">Review Submission</a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No submissions to review.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
