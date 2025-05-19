@@ -7,11 +7,14 @@ class UserLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'id': 'password'}), required=True)
 
 class UserRegistrationForm(forms.ModelForm):
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'id': 'password1'}), required=True)
+    password1 = forms.CharField(label='Password',
+                                widget=forms.PasswordInput(attrs={'id': 'password1'}),
+                                required=True
+                                )
     password2 = forms.CharField(label='Confirm Password', 
                               widget=forms.PasswordInput(attrs={'id': 'password2'}), 
-                              required=True)
-
+                              required=True
+                              )
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2', 'role']
