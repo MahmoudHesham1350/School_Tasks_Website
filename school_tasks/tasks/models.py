@@ -16,7 +16,7 @@ class Task(models.Model):
 
 class Assigned(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='assignments')
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assignments')
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assigned_tasks')
     is_completed = models.BooleanField(default=False)
     completed_at = models.DateTimeField(null=True, blank=True)
     
