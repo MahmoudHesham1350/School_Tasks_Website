@@ -90,6 +90,14 @@ button {
 }
 
 .edit-btn {
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
     background-color: #28a745;
 }
 
@@ -175,4 +183,11 @@ button {
 
 .complete-btn.completed:hover {
     background-color: #5a6268;
+}
+
+.task-actions {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
 }
