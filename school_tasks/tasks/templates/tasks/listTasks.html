@@ -33,10 +33,14 @@
                 </button>
             </div>
         </div>
+            {% if not tasks %}
+                <div class="no-tasks-message">
+                    <p>No tasks available. Check back later!</p>
+                </div>
+            {% endif %}
 
         <div id="message-container"></div>
         <div class="task_list" id="tasks-list">
-            {% if tasks %}
                 {% for task in tasks %}
                 <div class="task_card" data-task-id="{{ task.id }}">
                     <div class="title">
@@ -54,11 +58,7 @@
                     </div>
                 </div>
                 {% endfor %}
-            {% else %}
-                <div class="no-tasks-message">
-                    <p>No tasks available. Check back later!</p>
-                </div>
-            {% endif %}
+
         </div>
     </div>
 </div>

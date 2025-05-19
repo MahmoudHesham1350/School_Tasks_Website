@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{% static 'dashboards/css/profile.css' %}">
     <link rel="stylesheet" href="{% static 'dashboards/css/main.css' %}">
     <link rel="stylesheet" href="{% static 'dashboards/css/dashboardTasks.css' %}">
-    <script src="{% static 'dashboards/js/adminDashboard.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -20,7 +19,7 @@
             </header>
             <div class="profile-body">
                 <img src="{% static 'images/default-profile.png' %}" alt="Profile Picture" class="profile-picture">
-                <h2 class="profile-name">{{ user.get_full_name }}</h2>
+                <h2 class="profile-name">{{ user.username }}</h2>
                 <p class="profile-bio">Administrator</p>
                 <div class="button-container">
                     <a href="{% url 'tasks' %}" class="dashboard-btn">View All Tasks</a>
@@ -42,7 +41,7 @@
                             <span>Due: {{ task.due_date|date:"M d, Y" }}</span>
                             <span>Status: {{ task.status }}</span>
                         </div>
-                        <a href="{% url 'task-detail' task.id %}" class="view-task-btn">View Details</a>
+                        <a href="{% url 'task_detail' task.id %}" class="view-task-btn">View Details</a>
                     </div>
                     {% endfor %}
                 {% else %}

@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task, Assigned
 from .forms import TaskForm
 from django.contrib.auth.decorators import login_required
 from users.authorization import admin_only
+from django.utils import timezone
 
 
 # Create your views here.
@@ -10,8 +11,8 @@ from users.authorization import admin_only
 def tasks(request):
     if request.method == 'GET':
         if request.user.role == 'teacher':
-            tasks = Assigned.objects.filter(teacher=request.user).prefetch_related('task').all()
-            tasks = [task.task for task in tasks]
+            tasks = Task.objects.filter(assignments__teacher=request.user).all()
+            print(tasks)
         elif request.user.role == 'admin':
             tasks = Task.objects.filter(creator=request.user).all()
         return render(request, 'tasks/listTasks.html', {'tasks': tasks})
@@ -25,9 +26,6 @@ def create_task(request):
 
     elif request.method == 'POST':
         form = TaskForm(data=request.POST)
-        print(request.POST)
-        print(form.is_valid())
-        print(form.errors)
         if form.is_valid():
             task = form.save(commit=False)
             task.creator = request.user
@@ -66,5 +64,16 @@ def delete_task(request, task_id):
             return redirect('404')
         task.delete()
         return redirect('tasks')
-
+    
+@login_required(login_url='login')
+def complete_task(request, task_id):
+    if request.method == 'POST':
+        task = get_object_or_404(Task, id=task_id)
+        assignment = get_object_or_404(Assigned, task=task, teacher=request.user)
         
+        assignment.is_completed = not assignment.is_completed
+        assignment.completed_at = timezone.now() if assignment.is_completed else None
+        assignment.save()
+        
+        return redirect('task_detail', task_id=task_id)
+
