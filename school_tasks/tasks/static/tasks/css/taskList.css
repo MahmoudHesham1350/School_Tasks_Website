@@ -17,6 +17,9 @@
     width: 80%;
     min-height: 90vh;
     padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .title {
