@@ -13,15 +13,6 @@
     <div class="task-container">
         <div class="task-header">
             <h2 class="task-title">{{ task.title }}</h2>
-            {% if user.is_authenticated and user == task.creator %}
-            <div class="task-actions">
-                <a href="{% url 'update_task' task.id %}" class="edit-btn">Edit</a>
-                <form method="POST" action="{% url 'delete_task' task.id %}" class="delete-form" style="display: inline;">
-                    {% csrf_token %}
-                    <button class="delete-btn">Delete</button>
-                </form>
-            </div>
-            {% endif %}
         </div>
 
         <div class="task-meta">
@@ -73,6 +64,15 @@
                         </div>
                     {% endif %}
                 {% endfor %}
+            {% endif %}
+            {% if user.is_authenticated and user == task.creator %}
+            <div class="task-actions">
+                <a href="{% url 'update_task' task.id %}" class="edit-btn">Edit</a>
+                <form method="POST" action="{% url 'delete_task' task.id %}" class="delete-form" style="display: inline;">
+                    {% csrf_token %}
+                    <button class="delete-btn">Delete</button>
+                </form>
+            </div>
             {% endif %}
         </div>
     </div>
