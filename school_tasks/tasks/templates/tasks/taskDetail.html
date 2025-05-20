@@ -50,7 +50,7 @@
             {% if user.role == 'teacher' %}
                 {% for assignment in task.assignments.all %}
                     {% if assignment.teacher == user %}
-                        <div class="completion-status">
+                    <div class="completion-status" style="background: transparent; text-align: center">
                             <form method="POST" action="{% url 'complete_task' task.id %}">
                                 {% csrf_token %}
                                 <button class="complete-btn {% if assignment.is_completed %}completed{% endif %}">

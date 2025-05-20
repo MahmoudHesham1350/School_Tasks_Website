@@ -111,3 +111,60 @@ textarea {
         margin: 20px;
     }
 }
+
+/* File upload styling */
+.file-upload-wrapper {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.file-upload-wrapper:hover {
+    border-color: #3498db;
+    background-color: #f0f7fc;
+}
+
+.file-upload-wrapper input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.file-upload-label {
+    text-align: center;
+    color: #666;
+    z-index: 1;
+}
+
+.file-upload-label i {
+    font-size: 2em;
+    color: #3498db;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.file-upload-label span {
+    display: block;
+    font-size: 0.9em;
+}
+
+.file-upload-wrapper:focus-within {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Show selected file name */
+.file-upload-wrapper input[type="file"]:not([value=""]) + .file-upload-label {
+    display: none;
+}

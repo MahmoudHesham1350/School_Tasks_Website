@@ -23,9 +23,9 @@ def create_task(request):
     if request.method == 'GET':
         form = TaskForm()
         return render(request, 'tasks/createTask.html', {'form': form})
-
-    elif request.method == 'POST':
-        form = TaskForm(data=request.POST)
+        
+    if request.method == 'POST':
+        form = TaskForm(request.POST, files=request.FILES)  
         if form.is_valid():
             task = form.save(commit=False)
             task.creator = request.user

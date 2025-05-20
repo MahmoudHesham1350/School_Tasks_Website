@@ -21,12 +21,14 @@ class TaskForm(forms.ModelForm):
         task = super().save(commit=False)
         if commit:
             task.save()
+            Assigned.objects.filter(task=task).delete()
             assigned_teachers = self.cleaned_data.get('assigned_to')
-            assignments = [
-                Assigned(task=task, teacher=teacher) 
-                for teacher in assigned_teachers
-            ]
-            Assigned.objects.bulk_create(assignments)
+            if assigned_teachers:
+                assignments = [
+                    Assigned(task=task, teacher=teacher) 
+                    for teacher in assigned_teachers
+                ]
+                Assigned.objects.bulk_create(assignments)
         return task
 
 

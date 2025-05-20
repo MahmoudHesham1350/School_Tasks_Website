@@ -10,7 +10,7 @@ class Task(models.Model):
     subject = models.CharField(max_length=64)
     priority = models.CharField(choices=[('high', 'High'), ('medium', 'Medium'), ('low', 'Low')], max_length=64)
     description = models.TextField()
-    due_date = models.DateField()
+    due_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     files = models.FileField(upload_to='tasks_files/', blank=True, null=True)
 
