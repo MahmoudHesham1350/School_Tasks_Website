@@ -49,27 +49,5 @@
             </div>
         </div>
 
-        <!-- Submissions Section -->
-        <div class="dashboard">
-            <h3>Recent Submissions</h3>
-            <div class="submissions_list">
-                {% if recent_submissions %}
-                    {% for submission in recent_submissions %}
-                    <div class="submission-card">
-                        <h4>{{ submission.task.title }}</h4>
-                        <div class="submission-meta">
-                            <span>Submitted by: {{ submission.student.get_full_name }}</span>
-                            <span>Date: {{ submission.submitted_at|date:"M d, Y" }}</span>
-                            <span>Status: {{ submission.status }}</span>
-                        </div>
-                        <a href="{% url 'submission-detail' submission.id %}" class="view-submission-btn">Review Submission</a>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    <p>No submissions to review.</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
 </div>
 {% endblock %}
