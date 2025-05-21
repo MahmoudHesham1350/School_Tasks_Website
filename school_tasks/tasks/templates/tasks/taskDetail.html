@@ -26,12 +26,25 @@
             
             <p><strong>Subject:</strong> {{ task.subject }}</p>
             
+            {% if user.role == 'admin' %}
             <p><strong>Assigned to:</strong></p>
             <div class="assigned-teachers">
                 {% for assignment in task.assignments.all %}
-                    <span class="teacher-tag">{{ assignment.teacher.username }}</span>
+                    <div class="teacher-status">
+                        <span class="teacher-tag">{{ assignment.teacher.username }}</span>
+                        <span class="status-badge {% if assignment.is_completed %}completed{% elif task.due_date > now %}pending{% else %}overdue{% endif %}">
+                            {% if assignment.is_completed %}
+                                Completed
+                            {% elif task.due_date > now %}
+                                Pending
+                            {% else %}
+                                Overdue
+                            {% endif %}
+                        </span>
+                    </div>
                 {% endfor %}
             </div>
+            {% endif %}
 
             <p><strong>Attachments:</strong></p>
             <div class="attachments">
@@ -50,18 +63,18 @@
             {% if user.role == 'teacher' %}
                 {% for assignment in task.assignments.all %}
                     {% if assignment.teacher == user %}
-                    <div class="completion-status" style="background: transparent; text-align: center">
-                            <form method="POST" action="{% url 'complete_task' task.id %}">
-                                {% csrf_token %}
-                                <button class="complete-btn {% if assignment.is_completed %}completed{% endif %}">
-                                    {% if assignment.is_completed %}
-                                        Mark as Incomplete
-                                    {% else %}
-                                        Mark as Complete
-                                    {% endif %}
-                                </button>
-                            </form>
-                        </div>
+                    <div class="teacher-status">
+                        <span class="teacher-tag">{{ assignment.teacher.username }}</span>
+                        <span class="status-badge {% if assignment.is_completed %}completed{% elif task.due_date > now %}pending{% else %}overdue{% endif %}">
+                            {% if assignment.is_completed %}
+                                Completed
+                            {% elif task.due_date > now %}
+                                Pending
+                            {% else %}
+                                Overdue
+                            {% endif %}
+                        </span>
+                    </div>
                     {% endif %}
                 {% endfor %}
             {% endif %}

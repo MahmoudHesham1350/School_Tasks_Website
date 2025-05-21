@@ -39,7 +39,6 @@
                         <p>{{ task.description|truncatewords:30 }}</p>
                         <div class="task-meta">
                             <span>Due: {{ task.due_date|date:"M d, Y" }}</span>
-                            <span>Status: {{ task.status }}</span>
                         </div>
                         <a href="{% url 'task_detail' task.id %}" class="view-task-btn">View Details</a>
                     </div>

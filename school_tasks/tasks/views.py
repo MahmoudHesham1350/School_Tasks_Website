@@ -52,8 +52,19 @@ def update_task(request, task_id):
 @login_required(login_url='login')
 def task_detail(request, task_id):
     if request.method == 'GET':
-        task = Task.objects.get(id=task_id)
-        return render(request, 'tasks/taskDetail.html', {'task': task})
+        task = get_object_or_404(
+            Task.objects.select_related('creator').prefetch_related('assignments__teacher'),
+            id=task_id
+        )
+        now = timezone.now()
+        assignment = None
+        if request.user.role == 'teacher':
+            assignment = get_object_or_404(Assigned.objects.select_related('teacher'), task=task, teacher=request.user)
+        return render(request, 'tasks/taskDetail.html', {
+            'task': task, 
+            'now': now,
+            'assignment': assignment
+        })
     
 @login_required(login_url='login')
 @admin_only

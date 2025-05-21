@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from tasks.models import Task, Assigned
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 # Create your views here.
 
@@ -13,5 +14,11 @@ def adminDashboard(request):
 @login_required(login_url='login')
 def teacherDashboard(request):
     if request.method == 'GET':
-        tasks = Task.objects.filter(assignments__teacher=request.user)
-        return render(request, 'dashboards/teacherDashboard.html', {'assigned_tasks': tasks})
+        # Get assigned tasks with their completion status
+        assigned_tasks = Assigned.objects.filter(
+            teacher=request.user
+        ).select_related('task').all()
+        return render(request, 'dashboards/teacherDashboard.html', {
+            'assigned_tasks': assigned_tasks,
+            'now': timezone.now()
+        })

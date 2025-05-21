@@ -150,6 +150,12 @@ button {
     color: #1565c0;
 }
 
+.status-badge.complete {
+
+}
+
+
+
 .completion-status {
     background-color: #f8f9fa;
     padding: 15px;
@@ -190,4 +196,47 @@ button {
     justify-content: center;
     gap: 5px;
     margin-top: 20px;
+}
+
+.teacher-status {
+    display: flex;
+    align-items: center;
+    gap: 18px;              /* Fixed space between name and status */
+    margin-bottom: 8px;
+    min-height: 32px;
+}
+
+.teacher-tag {
+    min-width: 120px;       /* Ensures names align vertically */
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.status-badge {
+    min-width: 90px;
+    text-align: center;
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: 600;
+    display: inline-block;
+    white-space: nowrap;
+    background-color: #e3f2fd;
+    color: #1565c0;
+    box-shadow: 0 1px 2px rgba(21,101,192,0.04);
+}
+
+.status-badge.completed {
+    background-color: #c8e6c9;
+    color: #256029;
+}
+
+.status-badge.pending {
+    background-color: #fff9c4;
+    color: #b59f00;
+}
+
+.status-badge.overdue {
+    background-color: #ffcdd2;
+    color: #b71c1c;
 }

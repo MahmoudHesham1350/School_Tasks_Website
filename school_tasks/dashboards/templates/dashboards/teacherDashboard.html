@@ -32,15 +32,15 @@
             <h3>Assigned Tasks</h3>
             <div class="task_list">
                 {% if assigned_tasks %}
-                    {% for task in assigned_tasks %}
+                    {% for assigned_task in assigned_tasks %}
                     <div class="task-card">
-                        <h4>{{ task.title }}</h4>
-                        <p>{{ task.description|truncatewords:30 }}</p>
+                        <h4>{{ assigned_task.task.title }}</h4>
+                        <p>{{ assigned_task.task.description|truncatewords:30 }}</p>
                         <div class="task-meta">
-                            <span>Due: {{ task.due_date|date:"M d, Y" }}</span>
-                            <span>Status: {{ task.status }}</span>
+                            <span>Due: {{ assigned_task.task.due_date|date:"M d, Y" }}</span>
+                            <span>Status: {% if assigned_task.is_completed %}Completed{% elif assigned_task.task.due_date > now %}Pending{% else %}Overdue{% endif %}</span>
                         </div>
-                        <a href="{% url 'task_detail' task.id %}" class="view-task-btn">View Details</a>
+                        <a href="{% url 'task_detail' assigned_task.task.id %}" class="view-task-btn">View Details</a>
                     </div>
                     {% endfor %}
                 {% else %}
