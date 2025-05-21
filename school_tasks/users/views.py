@@ -20,10 +20,12 @@ def page404(request):
 
 def login(request):
     if request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('home')
         form = forms.UserLoginForm()
         return render(request, 'users/login.html', {'form': form})
     
-    elif request.method == 'POST':
+    if request.method == 'POST':
         form = forms.UserLoginForm(data=request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
@@ -39,10 +41,12 @@ def login(request):
 
 def signup(request):
     if request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('home')
         form = forms.UserRegistrationForm()
         return render(request, 'users/signup.html', {'form': form})
     
-    elif request.method == 'POST':
+    if request.method == 'POST':
         form = forms.UserRegistrationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
