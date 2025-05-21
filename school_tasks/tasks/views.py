@@ -29,7 +29,7 @@ def create_task(request):
         if form.is_valid():
             task = form.save(commit=False)
             task.creator = request.user
-            task.save()
+            form.save()
             return redirect('tasks')
         else:
             return render(request, 'tasks/createTask.html', {'form': form})
