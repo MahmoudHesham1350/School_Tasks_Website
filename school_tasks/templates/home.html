@@ -21,6 +21,7 @@
 <!-- User Differentiation Section -->    
 <div class="way-header">Who Are You ?</div>
 <div class="way-cards">
+    {% if not user.is_authenticated or user.role == 'admin' %}
     <div class="user-card">
         <img src="{% static 'users/images/admin.png' %}" alt="Admin Icon">
         <h1>Admin</h1>
@@ -31,6 +32,8 @@
             <a href="{% url 'login' %}" class="btn">Login as Admin</a>
         {% endif %}
     </div>
+    {% endif %}
+    {% if not user.is_authenticated or user.role == 'teacher' %}
     <div class="user-card">
         <img src="{% static 'users/images/teacher.png' %}" alt="Teacher Icon">
         <h1>Teacher</h1>
@@ -41,6 +44,7 @@
             <a href="{% url 'login' %}" class="btn">Login as Teacher</a>
         {% endif %}
     </div>
+    {% endif %}
 </div>
 
 <!-- Recent Updates Section -->
